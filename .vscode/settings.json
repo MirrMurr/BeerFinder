@@ -1,0 +1,14 @@
+{
+  "editor.rulers": [100],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.associations": {
+    "**/components/**/*.js": "javascriptreact"
+  },
+  "[scss]": {
+    "editor.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
+}
