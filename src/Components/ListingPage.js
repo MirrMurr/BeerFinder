@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Listing = () => {
+export const ListingPage = () => {
   const Beers = (
     <ul>
       <li>Aranyaszok</li>

@@ -1,24 +1,32 @@
 import React, { useState } from 'react'
 import { Route } from 'react-router-dom'
 
-import { Header } from './Components/Header.js'
 import { LoginPage } from './Components/LoginPage.js'
-import { Listing } from './Components/Listing.js'
+import { ListingPage } from './Components/ListingPage.js'
+import { AppBanner } from './Components/AppBanner.js'
+import { NavigationPanel } from './Components/NavigationPanel.js'
+// import PropTypes from 'prop-types'
+import './Stylesheets/styles.css'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [username, setUsername] = useState('')
 
-  const HandleLoginButtonClick = () => {
+  const HandleLoginButtonClick = (username) => {
     setIsLoggedIn(!isLoggedIn)
+    setUsername(username)
   }
 
   return (
     <div>
-      <Header LogoutHandler={HandleLoginButtonClick} isLoggedIn={isLoggedIn} />
+      <header>
+        <AppBanner />
+        <NavigationPanel username={username} LogoutHandler={HandleLoginButtonClick} isVisible={isLoggedIn} />
+      </header>
       <Route exact path="/">
         <LoginPage LoginHandler={HandleLoginButtonClick} />
       </Route>
-      <Route exact path="/listing" component={Listing} />
+      <Route exact path="/listing" component={ListingPage} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-.Header {
+header {
   display: flex;
   justify-content: space-between;
   height: 10%;
@@ -24,4 +24,8 @@
   justify-content: space-around;
   width: 25%;
   padding-right: 30px;
+}
+
+#error {
+  color: #FF0000;
 }
