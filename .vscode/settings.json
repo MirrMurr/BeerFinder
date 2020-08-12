@@ -5,10 +5,15 @@
   "files.associations": {
     "**/components/**/*.js": "javascriptreact"
   },
-  "[scss]": {
-    "editor.formatOnSave": true
-  },
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
   }
 }

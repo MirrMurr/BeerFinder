@@ -1,10 +1,24 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react'
+import { Route } from 'react-router-dom'
 
-function App() {
+import { Login } from './Components/Login.js'
+import { Listing } from './Components/Listing.js'
+import { LoginButton } from './Components/LoginButton.js'
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const HandleLoginButton = () => {
+    setIsLoggedIn(!isLoggedIn)
+  }
+
   return (
-    <h1>Hello, world!</h1>
-  );
+    <div>
+      <LoginButton isLoggedIn={isLoggedIn} onClick={HandleLoginButton} />
+      <Route exact path="/" component={Login} />
+      <Route exact path="/listing" component={Listing} />
+    </div>
+  )
 }
 
-export default App;
+export default App
