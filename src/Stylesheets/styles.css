@@ -1,0 +1,27 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  height: 10%;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.Banner {
+  display: flex;
+  justify-content: space-evenly;
+  width: 30%;
+
+  /* margin: 0, 50, 10, 0; */
+  padding-left: 30px;
+  background-color: #000000;
+  color: rgb(63, 160, 63);
+  text-align: left;
+}
+
+.NavigationPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 25%;
+  padding-right: 30px;
+}
