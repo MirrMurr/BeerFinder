@@ -26,6 +26,18 @@ header {
   padding-right: 30px;
 }
 
-#error {
+.error {
+  color: #FF0000;
+}
+
+.AppName {
+  color: #5C7835;
+}
+
+.validated {
+  color: #5C7835;
+}
+
+.not-validated {
   color: #FF0000;
 }
