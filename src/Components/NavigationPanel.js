@@ -17,9 +17,7 @@ export const NavigationPanel = ({ givenUsername, LogoutHandler, isVisible }) => 
     !isVisible ? null : (
       <div className="NavigationPanel">
         <h3>Hello, {givenUsername === '' ? username : givenUsername}!</h3>
-        <button onClick={HandleClick}>
-          Log Out
-        </button>
+        <button id="logout-button" onClick={HandleClick}>Log Out </button>
       </div>
     )
   )
