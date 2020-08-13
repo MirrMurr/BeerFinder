@@ -65,9 +65,9 @@ header {
   left: 50%;
   align-items: center;
   width: 50%;
-  max-width: 300px;
+  max-width: 375px;
   margin: auto;
-  padding: 20px;
+  padding: 10px 30px;
   transform: translate(-50%, -50%);
   border-radius: 20px;
   background-color: #FFFFFF;
@@ -81,8 +81,13 @@ header {
 #usernameInput {
   box-sizing: border-box;
   width: inherit;
-  height: 25px;
+  height: 35px;
   max-height: 45px;
+  border-width: thin;
+  border-color: #E3E3E3;
+  outline: none;
+  background-color: #FFFFFF;
+  text-decoration: none;
 }
 
 #login-button-container {

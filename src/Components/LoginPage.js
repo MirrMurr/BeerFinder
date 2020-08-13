@@ -31,11 +31,12 @@ UsernameInput.propTypes = {
 }
 
 const ValidationError = ({ show, error }) => {
-  return (show ? null
-    : (<div className="error" id="validationError">
-      {error}
-    </div>
-    )
+  return (
+    show ? null
+      : (<div className="error" id="validationError">
+        {error}
+      </div>
+      )
   )
 }
 
