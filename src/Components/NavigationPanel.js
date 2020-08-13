@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import '../Stylesheets/styles.css'
 
-export const NavigationPanel = ({ username, LogoutHandler, isVisible }) => {
+export const NavigationPanel = ({ givenUsername, LogoutHandler, isVisible }) => {
+  const [username, setUsername] = useState(givenUsername)
+
+  useEffect(() => {
+    setUsername(window.localStorage.getItem('username'))
+  }, [])
+
   const HandleClick = () => {
     LogoutHandler()
   }
@@ -11,19 +16,17 @@ export const NavigationPanel = ({ username, LogoutHandler, isVisible }) => {
   return (
     !isVisible ? null : (
       <div className="NavigationPanel">
-        <h3>Hello, {username}!</h3>
-        <Link to="/">
-          <button onClick={HandleClick}>
-            Log Out
-          </button>
-        </Link>
+        <h3>Hello, {givenUsername === '' ? username : givenUsername}!</h3>
+        <button onClick={HandleClick}>
+          Log Out
+        </button>
       </div>
     )
   )
 }
 
 NavigationPanel.propTypes = {
-  username: PropTypes.string,
+  givenUsername: PropTypes.string,
   LogoutHandler: PropTypes.func,
   isVisible: PropTypes.bool
 }

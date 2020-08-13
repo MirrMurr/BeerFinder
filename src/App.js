@@ -1,32 +1,51 @@
-import React, { useState } from 'react'
-import { Route } from 'react-router-dom'
-
+import React, { useState, useEffect } from 'react'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import { LoginPage } from './Components/LoginPage.js'
 import { ListingPage } from './Components/ListingPage.js'
 import { AppBanner } from './Components/AppBanner.js'
 import { NavigationPanel } from './Components/NavigationPanel.js'
-// import PropTypes from 'prop-types'
 import './Stylesheets/styles.css'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [username, setUsername] = useState('')
+  const history = useHistory()
 
-  const HandleLoginButtonClick = (username) => {
-    setIsLoggedIn(!isLoggedIn)
+  useEffect(() => {
+    const loggedin = window.localStorage.getItem('isLoggedIn') === 'true'
+    setIsLoggedIn(Boolean(loggedin))
+  }, [])
+
+  const handleLogin = (username) => {
     setUsername(username)
+    setIsLoggedIn(true)
+    window.localStorage.setItem('isLoggedIn', true)
+    window.localStorage.setItem('username', username)
+    history.push('/listing')
+  }
+
+  const handleLogout = () => {
+    setUsername('')
+    setIsLoggedIn(false)
+    window.localStorage.setItem('isLoggedIn', false)
+    window.localStorage.setItem('username', '')
+    history.push('/')
   }
 
   return (
     <div>
       <header>
         <AppBanner />
-        <NavigationPanel username={username} LogoutHandler={HandleLoginButtonClick} isVisible={isLoggedIn} />
+        <NavigationPanel givenUsername={username} LogoutHandler={handleLogout} isVisible={isLoggedIn} />
       </header>
-      <Route exact path="/">
-        <LoginPage LoginHandler={HandleLoginButtonClick} />
-      </Route>
-      <Route exact path="/listing" component={ListingPage} />
+      <Switch>
+        <Route exact path="/">
+          <LoginPage LoginHandler={handleLogin} />
+        </Route>
+        <Route exact path="/listing">
+          <ListingPage isLoggedIn={isLoggedIn} />
+        </Route>
+      </Switch>
     </div>
   )
 }

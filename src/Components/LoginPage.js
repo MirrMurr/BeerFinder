@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { Redirect } from 'react-router-dom'
 
 export const LoginPage = ({ LoginHandler }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [username, setUsername] = useState('')
   const [firstLoad, setFirstLoad] = useState(true)
   const [isValidated, setIsValidated] = useState(false)
   const [usernameError, setError] = useState(null)
-  const history = useHistory()
   const validationError = 'Your username has not been found eligible.'
 
   function validateUsername (username) {
@@ -21,6 +21,11 @@ export const LoginPage = ({ LoginHandler }) => {
         return (response.answer === 'yes')
       })
   }
+
+  useEffect(() => {
+    setIsLoggedIn(window.localStorage.getItem('isLoggedIn') === 'true')
+    setUsername(window.localStorage.getItem('username'))
+  }, [])
 
   useEffect(() => {
     if (username === '') {
@@ -46,7 +51,6 @@ export const LoginPage = ({ LoginHandler }) => {
         setIsValidated(isValid)
         if (isValid) {
           LoginHandler(username)
-          history.push('/listing')
         }
       })
   }
@@ -55,11 +59,15 @@ export const LoginPage = ({ LoginHandler }) => {
     setUsername(e.target.value.trim())
   }
 
+  if (isLoggedIn) {
+    return <Redirect to="/listing" />
+  }
+
   return (
-    <div>
+    <div className="login-page">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <input id="usernameInput" type="text" placeholder="Username" value={username} onChange={handleInputChange} />
+        <input id="usernameInput" type="text" placeholder="Username" onChange={handleInputChange} />
         <button type="submit">Log in</button>
       </form>
       <div className="error">
