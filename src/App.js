@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch, useHistory } from 'react-router-dom'
-import { LoginPage } from './Components/LoginPage.js'
+import { LoginForm } from './Components/LoginPage.js'
 import { ListingPage } from './Components/ListingPage.js'
 import { AppBanner } from './Components/AppBanner.js'
 import { NavigationPanel } from './Components/NavigationPanel.js'
@@ -40,7 +40,7 @@ const App = () => {
       </header>
       <Switch>
         <Route exact path="/">
-          <LoginPage LoginHandler={handleLogin} />
+          <LoginForm LoginHandler={handleLogin} />
         </Route>
         <Route exact path="/listing">
           <ListingPage isLoggedIn={isLoggedIn} />

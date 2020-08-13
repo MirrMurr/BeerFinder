@@ -1,13 +1,55 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
+import '../Stylesheets/styles.css'
 
-export const LoginPage = ({ LoginHandler }) => {
+const LoginButton = () => {
+  return (
+    <div id="login-button-container">
+      <button
+        id="login-button"
+        type="submit"
+      >Log in
+      </button>
+    </div>
+  )
+}
+
+const UsernameInput = ({ onChange }) => {
+  return (
+    <input
+      id="usernameInput"
+      type="text"
+      placeholder="Username"
+      onChange={onChange}
+    />
+  )
+}
+
+UsernameInput.propTypes = {
+  onChange: PropTypes.func
+}
+
+const ValidationError = ({ show, error }) => {
+  return (show ? null
+    : (<div className="error" id="validationError">
+      {error}
+    </div>
+    )
+  )
+}
+
+ValidationError.propTypes = {
+  show: PropTypes.bool,
+  error: PropTypes.string
+}
+
+export const LoginForm = ({ LoginHandler }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [username, setUsername] = useState('')
   const [firstLoad, setFirstLoad] = useState(true)
   const [isValidated, setIsValidated] = useState(false)
-  const [usernameError, setError] = useState(null)
+  const [usernameError, setusernameError] = useState(null)
   const validationError = 'Your username has not been found eligible.'
 
   function validateUsername (username) {
@@ -29,11 +71,11 @@ export const LoginPage = ({ LoginHandler }) => {
 
   useEffect(() => {
     if (username === '') {
-      setError('Username field must not be empty!')
+      setusernameError('Username field must not be empty!')
     } else if (username.length > 16) {
-      setError('Max. 16 characters.')
+      setusernameError('Max. 16 characters.')
     } else {
-      setError(null)
+      setusernameError(null)
     }
     setFirstLoad(true)
   }, [username])
@@ -63,21 +105,29 @@ export const LoginPage = ({ LoginHandler }) => {
     return <Redirect to="/listing" />
   }
 
+  if (usernameError) {
+    const el = document.getElementById(usernameError)
+    if (el) {
+      el.style.display = 'block'
+    }
+  }
+
   return (
-    <div className="login-page">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input id="usernameInput" type="text" placeholder="Username" onChange={handleInputChange} />
-        <button type="submit">Log in</button>
+    <div id="login-container">
+      <h1 id="login-title">Login</h1>
+      <form
+        id="login-form"
+        onSubmit={handleSubmit}
+      >
+        <UsernameInput onChange={handleInputChange} />
+        <LoginButton />
       </form>
-      <div className="error">
-        {firstLoad || isValidated || usernameError ? null : validationError}
-      </div>
-      <div className="error">{firstLoad || usernameError}</div>
+      <ValidationError show={Boolean(firstLoad || isValidated || usernameError)} error={validationError} />
+      <div className="error" id="usernameError">{firstLoad || usernameError}</div>
     </div>
   )
 }
 
-LoginPage.propTypes = {
+LoginForm.propTypes = {
   LoginHandler: PropTypes.func
 }
