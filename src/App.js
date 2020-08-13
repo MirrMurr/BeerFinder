@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch, useHistory } from 'react-router-dom'
-import { LoginForm } from './Components/LoginPage.js'
+import { LoginPage } from './Components/LoginPage.js'
 import { ListingPage } from './Components/ListingPage.js'
 import { AppBanner } from './Components/AppBanner.js'
 import { NavigationPanel } from './Components/NavigationPanel.js'
 import './Stylesheets/styles.css'
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - App state
   const [username, setUsername] = useState('')
+
   const history = useHistory()
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const App = () => {
       </header>
       <Switch>
         <Route exact path="/">
-          <LoginForm LoginHandler={handleLogin} />
+          <LoginPage LoginHandler={handleLogin} />
         </Route>
         <Route exact path="/listing">
           <ListingPage isLoggedIn={isLoggedIn} />

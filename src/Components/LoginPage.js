@@ -1,57 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
+import { LoginButton } from './LoginButton.js'
+import { UsernameInput } from './UsernameInput.js'
+import { ErrorTypes } from '../Constants/ErrorTypes.js'
+import { ErrorMessage } from './ErrorMessage.js'
 import '../Stylesheets/styles.css'
 
-const LoginButton = () => {
-  return (
-    <div id="login-button-container">
-      <button
-        id="login-button"
-        type="submit"
-      >Log in
-      </button>
-    </div>
-  )
-}
-
-const UsernameInput = ({ onChange }) => {
-  return (
-    <input
-      id="usernameInput"
-      type="text"
-      placeholder="Username"
-      onChange={onChange}
-    />
-  )
-}
-
-UsernameInput.propTypes = {
-  onChange: PropTypes.func
-}
-
-const ValidationError = ({ show, error }) => {
-  return (
-    show ? null
-      : (<div className="error" id="validationError">
-        {error}
-      </div>
-      )
-  )
-}
-
-ValidationError.propTypes = {
-  show: PropTypes.bool,
-  error: PropTypes.string
-}
-
-export const LoginForm = ({ LoginHandler }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+export const LoginPage = ({ LoginHandler }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login state
   const [username, setUsername] = useState('')
-  const [firstLoad, setFirstLoad] = useState(true)
+
+  const [retriedAfterSubmitRejection, setRetried] = useState(true)
   const [isValidated, setIsValidated] = useState(false)
-  const [usernameError, setusernameError] = useState(null)
-  const validationError = 'Your username has not been found eligible.'
+  const [errorType, setErrorType] = useState(ErrorTypes.NONE)
 
   function validateUsername (username) {
     // eslint-disable-next-line no-undef
@@ -72,28 +34,28 @@ export const LoginForm = ({ LoginHandler }) => {
 
   useEffect(() => {
     if (username === '') {
-      setusernameError('Username field must not be empty!')
+      setErrorType(ErrorTypes.EmptyUsername)
     } else if (username.length > 16) {
-      setusernameError('Max. 16 characters.')
+      setErrorType(ErrorTypes.LongUsername)
     } else {
-      setusernameError(null)
+      setErrorType(ErrorTypes.NONE)
     }
-    setFirstLoad(true)
+    setRetried(true)
   }, [username])
 
   function handleSubmit (e) {
     e.preventDefault()
-    if (usernameError) {
-      setFirstLoad(false)
+    setRetried(false)
+    if ([ErrorTypes.EmptyUsername, ErrorTypes.LongUsername].includes(errorType)) {
       return
     }
     validateUsername(username)
       .then(isValid => {
-        // console.log(isValid)
-        setFirstLoad(false)
         setIsValidated(isValid)
         if (isValid) {
           LoginHandler(username)
+        } else {
+          setErrorType(ErrorTypes.Validation)
         }
       })
   }
@@ -106,16 +68,9 @@ export const LoginForm = ({ LoginHandler }) => {
     return <Redirect to="/listing" />
   }
 
-  if (usernameError) {
-    const el = document.getElementById(usernameError)
-    if (el) {
-      el.style.display = 'block'
-    }
-  }
-
   return (
     <div id="login-container">
-      <h1 id="login-title">Login</h1>
+      <h1 id="login-title">Log in</h1>
       <form
         id="login-form"
         onSubmit={handleSubmit}
@@ -123,12 +78,11 @@ export const LoginForm = ({ LoginHandler }) => {
         <UsernameInput onChange={handleInputChange} />
         <LoginButton />
       </form>
-      <ValidationError show={Boolean(firstLoad || isValidated || usernameError)} error={validationError} />
-      <div className="error" id="usernameError">{firstLoad || usernameError}</div>
+      <ErrorMessage disabled={retriedAfterSubmitRejection || isValidated} type={errorType} />
     </div>
   )
 }
 
-LoginForm.propTypes = {
+LoginPage.propTypes = {
   LoginHandler: PropTypes.func
 }
