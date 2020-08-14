@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import '../Stylesheets/styles.css'
+import '../../Stylesheets/styles.css'
 
 export const NavigationPanel = ({ givenUsername, LogoutHandler, isVisible }) => {
   const [username, setUsername] = useState(givenUsername)
@@ -16,8 +16,8 @@ export const NavigationPanel = ({ givenUsername, LogoutHandler, isVisible }) => 
   return (
     !isVisible ? null : (
       <div className="NavigationPanel">
-        <p id="user-greeting">Hello, {givenUsername === '' ? username : givenUsername}!</p>
-        <button id="logout-button" onClick={HandleClick}>Logout</button>
+        <p className="user-greeting">Hello, {givenUsername === '' ? username : givenUsername}!</p>
+        <button className="logout-button" onClick={HandleClick}>Logout</button>
       </div>
     )
   )

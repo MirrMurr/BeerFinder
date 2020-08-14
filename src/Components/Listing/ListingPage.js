@@ -2,23 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
-export const ListingPage = ({ isLoggedIn }) => {
-  const Beers = (
-    <ul>
-      <li>Aranyaszok</li>
-      <li>Blanc</li>
-      <li>Soproni</li>
-    </ul>
-  )
+import { FilterForm } from './FilterForm'
+import { ProductList } from './ProductList'
 
+export const ListingPage = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
     return <Redirect to="/" />
   }
 
   return (
-    <div>
-      <h1>Beers</h1>
-      {Beers}
+    <div className="listing-container">
+      <FilterForm />
+      <ProductList />
+      {/* <Pagination /> */}
     </div>
   )
 }

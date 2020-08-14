@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch, useHistory } from 'react-router-dom'
-import { LoginPage } from './Components/LoginPage.js'
-import { ListingPage } from './Components/ListingPage.js'
-import { AppBanner } from './Components/AppBanner.js'
-import { NavigationPanel } from './Components/NavigationPanel.js'
+
+import { AppBanner } from './Components/Header/AppBanner.js'
+import { NavigationPanel } from './Components/Header/NavigationPanel.js'
+import { LoginPage } from './Components/Login/LoginPage.js'
+import { ListingPage } from './Components/Listing/ListingPage.js'
+
 import './Stylesheets/styles.css'
 
 const App = () => {

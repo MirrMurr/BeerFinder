@@ -51,7 +51,7 @@ header {
   color: rgb(173, 255, 47);
 }
 
-#logout-button {
+.logout-button {
   padding: 7px 14px;
   border: none;
   border-radius: 10px;
@@ -64,7 +64,12 @@ header {
   text-decoration: none;
 }
 
-#login-container {
+.logout-button:hover {
+  background-color: #F51717;
+  cursor: pointer;
+}
+
+.login-container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -80,11 +85,11 @@ header {
   box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.2), 0 20px 80px 0 rgba(0, 0, 0, 0.19);
 }
 
-#login-form {
+.login-form {
   width: 100%;
 }
 
-#usernameInput {
+.usernameInput {
   box-sizing: border-box;
   width: inherit;
   height: 35px;
@@ -97,13 +102,13 @@ header {
   text-decoration: none;
 }
 
-#login-button-container {
+.login-button-container {
   display: flex;
   justify-content: left;
   padding-top: 1em;
 }
 
-#login-button {
+.login-button {
   margin-right: 0;
   margin-left: auto;
   padding: 10px 20px;
@@ -117,7 +122,12 @@ header {
   text-align: center;
 }
 
-#user-greeting {
+.login-button:hover {
+  background-color: #A122FC;
+  cursor: pointer;
+}
+
+.user-greeting {
   font-size: 15px;
   font-weight: 900;
 }

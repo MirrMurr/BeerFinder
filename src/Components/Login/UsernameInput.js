@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export const UsernameInput = ({ onChange }) => {
   return (
     <input
-      id="usernameInput"
+      className="usernameInput"
       type="text"
       placeholder="Username"
       onChange={onChange}

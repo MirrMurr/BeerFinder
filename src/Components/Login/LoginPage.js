@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { LoginButton } from './LoginButton.js'
 import { UsernameInput } from './UsernameInput.js'
-import { ErrorTypes } from '../Constants/ErrorTypes.js'
-import { ErrorMessage } from './ErrorMessage.js'
-import '../Stylesheets/styles.css'
+import { ErrorTypes } from '../../Constants/ErrorTypes.js'
+import { ErrorMessage } from '../ErrorMessage.js'
+import '../../Stylesheets/styles.css'
 
 export const LoginPage = ({ LoginHandler }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login state
@@ -70,16 +70,16 @@ export const LoginPage = ({ LoginHandler }) => {
   }
 
   return (
-    <div id="login-container">
-      <h1 id="login-title">Log in</h1>
+    <div className="login-container">
+      <h1 className="login-title">Log in</h1>
       <form
-        id="login-form"
+        className="login-form"
         onSubmit={handleSubmit}
       >
         <UsernameInput onChange={handleInputChange} />
         <LoginButton />
       </form>
-      <ErrorMessage disabled={retriedAfterSubmitRejection || isValidated} type={errorType} />
+      <ErrorMessage show={!retriedAfterSubmitRejection && !isValidated} type={errorType} />
     </div>
   )
 }

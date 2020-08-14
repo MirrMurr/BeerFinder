@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Stylesheets/styles.css'
+import '../../Stylesheets/styles.css'
 
 export const AppBanner = () => {
   return (
