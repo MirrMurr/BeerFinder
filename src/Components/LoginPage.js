@@ -43,7 +43,7 @@ export const LoginPage = ({ LoginHandler }) => {
     setRetried(true)
   }, [username])
 
-  function handleSubmit (e) {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setRetried(false)
     if ([ErrorTypes.EmptyUsername, ErrorTypes.LongUsername].includes(errorType)) {

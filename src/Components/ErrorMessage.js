@@ -5,8 +5,7 @@ import { ErrorMessages } from '../Constants/ErrorMessages.js'
 
 export const ErrorMessage = ({ disabled, type }) => {
   if (ErrorTypes.NONE === type) return null
-  const error = ErrorMessages[type]
-  return (disabled ? null : <div className="error" id={type}>{error}</div>)
+  return (disabled ? null : <div className={`error ${type}`}>{ErrorMessages[type]}</div>)
 }
 
 ErrorMessage.propTypes = {
