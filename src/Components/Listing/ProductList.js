@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { ProductCard } from './ProductCard'
 import axios from 'axios'
 
-export const ProductList = () => {
+// const Beers = [
+//   { id: 1, name: 'Aranyaszok', abv: 3.2, tagline: 'naonjo', image_url: '' },
+//   { id: 2, name: 'Blanc', abv: 4.5, tagline: 'legjobb', image_url: '' },
+//   { id: 3, name: 'Dreher', abv: 2.8, tagline: 'nemrossz', image_url: '' },
+//   { id: 4, name: 'Soproni', abv: 3.5, tagline: 'ezisjo', image_url: '' }
+// ]
+
+export const ProductList = ({ filterConditions }) => {
+  const [fetchedData, setFetchedData] = useState([])
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
 
@@ -11,18 +19,34 @@ export const ProductList = () => {
       setLoading(true)
       const response = await axios.get('https://api.punkapi.com/v2/beers')
       setLoading(false)
-      const beers = response.data.map(product => {
+      setFetchedData(response.data)
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const filterBeers = () => {
+      const beers = fetchedData.map(product => {
+        const name = product.name
+        const imageUrl = product.image_url
+        const abv = product.abv
+        const tagline = product.tagline
+
+        const show = name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
+          filterConditions.fromAbv <= abv &&
+          abv <= filterConditions.toAbv
+
         return (
           <li key={product.id} className="product">
-            <ProductCard name={product.name} abv={product.abv} tagline={product.tagline} />
+            <ProductCard imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
           </li>
         )
       })
       setProducts(beers)
     }
 
-    fetchData()
-  }, [])
+    filterBeers()
+  }, [filterConditions.name, filterConditions.fromAbv, filterConditions.toAbv, fetchedData])
 
   if (loading) return <div><strong>Loading Beer data...</strong></div>
 
@@ -33,4 +57,8 @@ export const ProductList = () => {
       </ul>
     </div>
   )
+}
+
+ProductList.propTypes = {
+  filterConditions (props, propName, componentName) { }
 }
