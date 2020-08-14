@@ -33,6 +33,7 @@ export const LoginPage = ({ LoginHandler }) => {
   }, [])
 
   useEffect(() => {
+    if (username === null) return
     if (username === '') {
       setErrorType(ErrorTypes.EmptyUsername)
     } else if (username.length > 16) {

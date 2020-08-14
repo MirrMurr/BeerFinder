@@ -93,6 +93,7 @@ header {
   border-color: #E3E3E3;
   outline: none;
   background-color: #FFFFFF;
+  font-size: medium;
   text-decoration: none;
 }
 
@@ -111,6 +112,7 @@ header {
   border-top-left-radius: 0;
   background-color: #9003F4;
   color: #FFFFFF;
+  font-size: medium;
   font-weight: 900;
   text-align: center;
 }
