@@ -3,7 +3,7 @@ import React from 'react'
 export const FilterForm = () => {
   return (
     <div className="filter-form">
-      <h1>Filter Form</h1>
+      <h2>Filter Form</h2>
     </div>
   )
 }

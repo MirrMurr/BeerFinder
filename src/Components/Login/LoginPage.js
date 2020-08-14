@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
+import axios from 'axios'
+
 import { LoginButton } from './LoginButton.js'
 import { UsernameInput } from './UsernameInput.js'
 import { ErrorTypes } from '../../Constants/ErrorTypes.js'
 import { ErrorMessage } from '../ErrorMessage.js'
+
 import '../../Stylesheets/styles.css'
 
 export const LoginPage = ({ LoginHandler }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login, username state
   const [username, setUsername] = useState('')
-
   const [retriedAfterSubmitRejection, setRetried] = useState(true)
   const [isValidated, setIsValidated] = useState(false)
   const [errorType, setErrorType] = useState(ErrorTypes.NONE)
 
-  function validateUsername (username) {
-    // eslint-disable-next-line no-undef
-    return fetch('https://yesno.wtf/api', {
-      method: 'GET',
-      headers: { Accept: 'application/json' }
-    })
-      .then(res => res.json())
-      .then(response => {
-        return (response.answer === 'yes')
-      })
+  const validateUsername = async (username) => {
+    // setLoading(true)
+    const response = await axios.get('https://yesno.wtf/api')
+    // setLoading(false)
+    return response.data.answer === 'yes'
   }
 
   useEffect(() => {

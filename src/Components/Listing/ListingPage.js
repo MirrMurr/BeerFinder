@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import { FilterForm } from './FilterForm'
 import { ProductList } from './ProductList'
+import { Pagination } from './Pagination'
 
 export const ListingPage = ({ isLoggedIn }) => {
   if (!isLoggedIn) {
@@ -14,7 +15,7 @@ export const ListingPage = ({ isLoggedIn }) => {
     <div className="listing-container">
       <FilterForm />
       <ProductList />
-      {/* <Pagination /> */}
+      <Pagination />
     </div>
   )
 }
