@@ -14,6 +14,13 @@ export const ProductList = ({ filterConditions }) => {
   const [fetchedData, setFetchedData] = useState([])
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
+  // const [filteredBeers, setFilteredBeers] = useState([])
+
+  // const testConditions = (name, abv) => {
+  //   return (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
+  //     filterConditions.fromAbv <= abv &&
+  //     abv <= filterConditions.toAbv)
+  // }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,9 +40,9 @@ export const ProductList = ({ filterConditions }) => {
         const abv = product.abv
         const tagline = product.tagline
 
-        const show = name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
-          filterConditions.fromAbv <= abv &&
-          abv <= filterConditions.toAbv
+        const show = (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
+        filterConditions.fromAbv <= abv &&
+        abv <= filterConditions.toAbv)
 
         return (
           <li key={product.id} className="product">
@@ -47,6 +54,7 @@ export const ProductList = ({ filterConditions }) => {
     }
 
     filterBeers()
+    window.localStorage.setItem('filteredBeers', JSON.stringify(fetchedData))
   }, [filterConditions.name, filterConditions.fromAbv, filterConditions.toAbv, fetchedData])
 
   if (loading) return <div><strong>Loading Beer data...</strong></div>

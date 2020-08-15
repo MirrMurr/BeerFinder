@@ -3,7 +3,6 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 
 import { FilterForm } from './FilterForm'
 import { ProductList } from './ProductList'
-import { Pagination } from './Pagination'
 import { BeerInfo } from './BeerInfo'
 
 export const ListingPage = () => {
@@ -31,7 +30,6 @@ export const ListingPage = () => {
           <div className="listing">
             <FilterForm handleSubmit={handleSubmitFilter} />
             <ProductList filterConditions={filterCondition} />
-            <Pagination />
           </div>
         </div>
       </Route>

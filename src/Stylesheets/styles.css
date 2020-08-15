@@ -6,6 +6,14 @@ header {
   color: #FFFFFF;
 }
 
+.Company {
+  width: 50%;
+}
+
+.Company path {
+  fill: #FFFFFF;
+}
+
 .Banner {
   display: flex;
   justify-content: space-between;
@@ -104,13 +112,13 @@ header {
 
 .login-button-container {
   display: flex;
-  justify-content: left;
+  justify-content: flex-end;
   padding-top: 1em;
 }
 
-.login-button {
+.login-button,
+.filter-button {
   margin-right: 0;
-  margin-left: auto;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
@@ -122,7 +130,12 @@ header {
   text-align: center;
 }
 
-.login-button:hover {
+.filter-button {
+  border-top-left-radius: 10px;
+}
+
+.login-button:hover,
+.filter-button:hover {
   background-color: #A122FC;
   cursor: pointer;
 }
@@ -137,9 +150,42 @@ header {
   background-color: #FFFFFF;
 }
 
-.filter-form {
-  /* background-color: #6C8F04; */
+.filter-form-container {
+  /* width: 100%; */
+
+  margin: 0 3.33%;
+  padding: 0 10em;
+  padding-top: 1em;
   background-color: #FFFFFF;
+}
+
+.filter-form {
+  display: flex;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+}
+
+.beer-name-input-container {
+  margin: 0 10px;
+  padding-top: 0.5em;
+}
+
+.abv-input-container {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.beer-name-input {
+  width: 10em;
+}
+
+.abv-input {
+  width: 5em;
+}
+
+.beer-name-input,
+.abv-input {
+  height: 1.5em;
 }
 
 .product-list-container {
@@ -163,8 +209,6 @@ li.product {
   width: 33.3333%;
   float: left;
   background-color: #FFFFFF;
-
-  /* background-color: #048A8F; */
 }
 
 .product-card {
@@ -220,21 +264,42 @@ a.card-link {
   transform: translate(-50%, -55%);
 }
 
-.pagination {
-  background-color: #048A8F;
+.info-image-container {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  height: 15em;
+  margin: 2em 4em;
 }
 
-@media screen and (max-width: 1350px) {
+.beer-detail-image {
+  width: auto;
+  height: 100%;
+}
+
+.beer-info {
+  padding: 2em 5em;
+}
+
+.description {
+  text-justify: auto;
+}
+
+.info-container {
+  display: flex;
+}
+
+@media screen and (max-width: 1300px) {
   .product-list-container {
     padding: 0;
   }
-}
 
-/* @media screen and (max-width: 700px) {
-  .product-list-container {
+  .filter-form-container {
+    margin: 0 3.33%;
     padding: 0;
+    padding-top: 1em;
   }
-} */
+}
 
 @media screen and (max-width: 850px) {
   .product-list-container {
@@ -247,9 +312,44 @@ a.card-link {
 
   li.product {
     width: 50%;
+  }
 
-    /* margin-right: 0.1em;
-    margin-left: 0.1em; */
+  .filter-form-container {
+    margin: 0 5%;
+    padding: 0;
+    padding-top: 1em;
+  }
+
+  .info-image-container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .info-container {
+    display: block;
+  }
+
+  .Banner {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .filter-form {
+    display: inline;
+  }
+
+  .abv-input-container {
+    margin: 0 10px;
+  }
+
+  .info-image-container {
+    width: 50%;
+  }
+
+  .Banner {
+    width: 50%;
   }
 }
 
@@ -260,6 +360,20 @@ a.card-link {
 
   li.product {
     width: 100%;
+  }
+
+  .filter-form-container {
+    margin: 0 10%;
+    padding: 0;
+    padding-top: 1em;
+  }
+
+  .Banner {
+    width: 60%;
+  }
+
+  .AppName {
+    /* font-size: small; */
   }
 }
 

@@ -14,14 +14,15 @@ export const LoginPage = ({ LoginHandler }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login, username state
   const [username, setUsername] = useState('')
 
+  const [loading, setLoading] = useState(false)
   const [retriedAfterSubmitRejection, setRetried] = useState(true)
   const [isValidated, setIsValidated] = useState(false)
   const [errorType, setErrorType] = useState(ErrorTypes.NONE)
 
   const validateUsername = async (username) => {
-    // setLoading(true)
+    setLoading(true)
     const response = await axios.get('https://yesno.wtf/api')
-    // setLoading(false)
+    setLoading(false)
     return response.data.answer === 'yes'
   }
 
@@ -70,6 +71,7 @@ export const LoginPage = ({ LoginHandler }) => {
   return (
     <div className="login-container">
       <h1 className="login-title">Log in</h1>
+      <p>{loading ? 'Verifying username...' : null}</p>
       <form
         className="login-form"
         onSubmit={handleSubmit}
