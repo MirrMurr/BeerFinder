@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export const ProductCard = ({ imgUrl, name, abv, tagline, show }) => {
-  return ((
+  return (
     <div className={`product-card ${show ? '' : 'hidden'}`}>
       <div className="container">
         <div className="details-container">
@@ -14,7 +14,7 @@ export const ProductCard = ({ imgUrl, name, abv, tagline, show }) => {
           <img className="beer-image" src={imgUrl} alt={name} />
         </div>
       </div>
-    </div>)
+    </div>
   )
 }
 

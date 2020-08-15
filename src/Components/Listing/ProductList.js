@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { ProductCard } from './ProductCard'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
+import { ProductCard } from './ProductCard'
 
 // const Beers = [
 //   { id: 1, name: 'Aranyaszok', abv: 3.2, tagline: 'naonjo', image_url: '' },
@@ -38,7 +40,9 @@ export const ProductList = ({ filterConditions }) => {
 
         return (
           <li key={product.id} className="product">
-            <ProductCard imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
+            <Link to={`/listing/${product.id}`}>
+              <ProductCard imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
+            </Link>
           </li>
         )
       })

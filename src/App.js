@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Switch, useHistory, Route } from 'react-router-dom'
 
 import { AppBanner } from './Components/Header/AppBanner.js'
 import { NavigationPanel } from './Components/Header/NavigationPanel.js'
@@ -42,11 +42,11 @@ const App = () => {
         <NavigationPanel givenUsername={username} LogoutHandler={handleLogout} isVisible={isLoggedIn} />
       </header>
       <Switch>
-        <Route exact path="/">
-          <LoginPage LoginHandler={handleLogin} />
+        <Route path="/listing/">
+          <ListingPage />
         </Route>
-        <Route exact path="/listing">
-          <ListingPage isLoggedIn={isLoggedIn} />
+        <Route path="/">
+          <LoginPage LoginHandler={handleLogin} />
         </Route>
       </Switch>
     </div>

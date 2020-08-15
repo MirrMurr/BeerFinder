@@ -132,7 +132,7 @@ header {
   font-weight: 900;
 }
 
-.listing-container {
+.listing {
   /* background-color: #C6AA2C; */
   background-color: #FFFFFF;
 }
@@ -186,6 +186,11 @@ li.product {
   /* background-color: #DCFFCD; */
   background-color: rgb(173, 255, 47);
   cursor: pointer;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
 }
 
 .container {

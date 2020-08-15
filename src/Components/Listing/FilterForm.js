@@ -30,7 +30,7 @@ export const FilterForm = ({ handleSubmit }) => {
 
   return (
     <div className="filter-form">
-      <h2>Filter</h2>
+      <h3>Filter</h3>
       <form onSubmit={onSubmit}>
         <label htmlFor="name">Name:</label>
         <input type="text" name="name" placeholder="name" onChange={handleNameInputChange} value={name} />
