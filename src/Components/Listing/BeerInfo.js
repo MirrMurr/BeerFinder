@@ -1,16 +1,18 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-export const DetailView = ({ product }) => {
+export const BeerInfo = ({ product }) => {
   const params = useParams()
 
+  // TODO Flux storage query
+
   return (
-    <div className="detailed-view">
+    <div className="beer-info">
       <h1>Detail page {params.id}</h1>
     </div>
   )
 }
 
-DetailView.propTypes = {
+BeerInfo.propTypes = {
   product (props, propName, componentName) { }
 }

@@ -13,6 +13,7 @@ import '../../Stylesheets/styles.css'
 export const LoginPage = ({ LoginHandler }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login, username state
   const [username, setUsername] = useState('')
+
   const [retriedAfterSubmitRejection, setRetried] = useState(true)
   const [isValidated, setIsValidated] = useState(false)
   const [errorType, setErrorType] = useState(ErrorTypes.NONE)

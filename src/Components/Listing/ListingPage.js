@@ -4,7 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 import { FilterForm } from './FilterForm'
 import { ProductList } from './ProductList'
 import { Pagination } from './Pagination'
-import { DetailView } from './DetailView'
+import { BeerInfo } from './BeerInfo'
 
 export const ListingPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true) // TODO Redux
@@ -24,7 +24,8 @@ export const ListingPage = () => {
 
   return (
     <Switch>
-      <Route path="/listing/:id" component={DetailView} />
+      <Route path="/listing/:id" component={BeerInfo} />
+
       <Route path="/listing">
         <div className="listing-container">
           <div className="listing">

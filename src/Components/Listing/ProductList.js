@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
 import { ProductCard } from './ProductCard'
 
@@ -40,9 +39,7 @@ export const ProductList = ({ filterConditions }) => {
 
         return (
           <li key={product.id} className="product">
-            <Link to={`/listing/${product.id}`}>
-              <ProductCard imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
-            </Link>
+            <ProductCard id={product.id} imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
           </li>
         )
       })
