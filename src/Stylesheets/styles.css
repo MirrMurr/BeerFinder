@@ -1,20 +1,20 @@
 header {
   display: flex;
   justify-content: space-between;
-  height: 10%;
+  height: 4.5em;
   background-color: #000000;
   color: #FFFFFF;
 }
 
-.Company {
+.company {
   width: 50%;
 }
 
-.Company path {
+.company path {
   fill: #FFFFFF;
 }
 
-.Banner {
+.app-banner {
   display: flex;
   justify-content: space-between;
   width: 30%;
@@ -24,7 +24,7 @@ header {
   text-align: left;
 }
 
-.NavigationPanel {
+.navigation-panel {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -32,8 +32,8 @@ header {
   margin-right: 20px;
 }
 
-.Banner,
-.NavigationPanel {
+.app-banner,
+.navigation-panel {
   max-width: 325px;
 }
 
@@ -54,9 +54,14 @@ header {
   text-shadow: #000000;
 }
 
-.AppName {
-  /* color: #5C7835; */
+.app-name-container {
+  display: flex;
+  align-items: center;
+}
+
+.app-name {
   color: rgb(173, 255, 47);
+  font-weight: 900;
 }
 
 .logout-button {
@@ -180,7 +185,7 @@ header {
 }
 
 .abv-input {
-  width: 5em;
+  width: 4em;
 }
 
 .beer-name-input,
@@ -330,14 +335,24 @@ a.card-link {
     display: block;
   }
 
-  .Banner {
+  .app-banner {
     width: 40%;
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 570px) {
+  .user-greeting {
+    font-size: x-small;
+  }
+
+  .navigation-panel {
+    width: 50%;
+  }
+
   .filter-form {
-    display: inline;
+    display: flexbox;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .abv-input-container {
@@ -348,7 +363,7 @@ a.card-link {
     width: 50%;
   }
 
-  .Banner {
+  .app-banner {
     width: 50%;
   }
 }
@@ -368,12 +383,24 @@ a.card-link {
     padding-top: 1em;
   }
 
-  .Banner {
+  .app-banner {
     width: 60%;
+    padding: 0 5px;
   }
 
-  .AppName {
-    /* font-size: small; */
+  .navigation-panel {
+    width: 40%;
+    margin: 0 1em;
+  }
+
+  .app-name {
+    font-size: small;
+  }
+
+  .logout-button,
+  .login-button {
+    width: 50%;
+    font-size: 50%;
   }
 }
 

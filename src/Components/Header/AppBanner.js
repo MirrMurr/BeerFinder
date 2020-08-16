@@ -4,9 +4,11 @@ import GrapeLogo from '../../grape_logo.svg'
 
 export const AppBanner = () => {
   return (
-    <div className="Banner">
-      <img className="Company" src={GrapeLogo} alt="grape logo" />
-      <h3 className="AppName">Beer Finder®</h3>
+    <div className="app-banner">
+      <img className="company" src={GrapeLogo} alt="grape logo" />
+      <div className="app-name-container">
+        <p className="app-name">Beer Finder®</p>
+      </div>
     </div>
   )
 }
