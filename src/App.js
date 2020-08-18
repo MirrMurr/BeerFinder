@@ -3,8 +3,8 @@ import { Switch, useHistory, Route } from 'react-router-dom'
 
 import { AppBanner } from './Components/Header/AppBanner.js'
 import { NavigationPanel } from './Components/Header/NavigationPanel.js'
-import { LoginPage } from './Components/Login/LoginPage.js'
-import { ListingPage } from './Components/Listing/ListingPage.js'
+import { LoginPage } from './Pages/LoginPage.js'
+import { ListingPage } from './Pages/ListingPage.js'
 
 import './Stylesheets/styles.css'
 
@@ -42,9 +42,7 @@ const App = () => {
         <NavigationPanel givenUsername={username} LogoutHandler={handleLogout} isVisible={isLoggedIn} />
       </header>
       <Switch>
-        <Route path="/listing/">
-          <ListingPage />
-        </Route>
+        <Route path="/listing/" component={ListingPage} />
         <Route path="/">
           <LoginPage LoginHandler={handleLogin} />
         </Route>

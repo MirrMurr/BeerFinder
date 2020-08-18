@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
-import { LoginButton } from './LoginButton.js'
-import { UsernameInput } from './UsernameInput.js'
-import { ErrorTypes } from '../../Constants/ErrorTypes.js'
-import { ErrorMessage } from '../ErrorMessage.js'
+import { LoginButton } from '../Components/Login/LoginButton.js'
+import { UsernameInput } from '../Components/Login/UsernameInput.js'
+import { ErrorTypes } from '../Constants/ErrorTypes.js'
+import { ErrorMessage } from '../Components/ErrorMessage.js'
 
-import '../../Stylesheets/styles.css'
+import '../Stylesheets/styles.css'
 
 export const LoginPage = ({ LoginHandler }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login, username state
@@ -64,9 +64,7 @@ export const LoginPage = ({ LoginHandler }) => {
     setUsername(e.target.value.trim())
   }
 
-  if (isLoggedIn) {
-    return <Redirect to="/listing" />
-  }
+  if (isLoggedIn) { return <Redirect to="/listing" /> }
 
   return (
     <div className="login-container">

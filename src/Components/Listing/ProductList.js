@@ -13,8 +13,7 @@ import { ProductCard } from './ProductCard'
 export const ProductList = ({ filterConditions }) => {
   const [fetchedData, setFetchedData] = useState([])
   const [loading, setLoading] = useState(false)
-  const [products, setProducts] = useState([])
-  // const [filteredBeers, setFilteredBeers] = useState([])
+  const [filteredBeers, setFilteredBeers] = useState([])
 
   // const testConditions = (name, abv) => {
   //   return (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
@@ -34,35 +33,42 @@ export const ProductList = ({ filterConditions }) => {
 
   useEffect(() => {
     const filterBeers = () => {
-      const beers = fetchedData.map(product => {
-        const name = product.name
-        const imageUrl = product.image_url
-        const abv = product.abv
-        const tagline = product.tagline
-
-        const show = (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
-        filterConditions.fromAbv <= abv &&
-        abv <= filterConditions.toAbv)
-
-        return (
-          <li key={product.id} className="product">
-            <ProductCard id={product.id} imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
-          </li>
-        )
+      const beers = fetchedData.filter(beer => {
+        return beer.name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
+                filterConditions.fromAbv <= beer.abv &&
+                beer.abv <= filterConditions.toAbv
       })
-      setProducts(beers)
+      setFilteredBeers(beers)
     }
 
     filterBeers()
-    window.localStorage.setItem('filteredBeers', JSON.stringify(fetchedData))
-  }, [filterConditions.name, filterConditions.fromAbv, filterConditions.toAbv, fetchedData])
+  }, [filterConditions, fetchedData])
+
+  useEffect(() => {
+    window.localStorage.setItem('filteredBeers', JSON.stringify(filteredBeers))
+  }, [filteredBeers])
 
   if (loading) return <div><strong>Loading Beer data...</strong></div>
 
   return (
     <div className="product-list-container">
       <ul className="product-list">
-        {products}
+        {filteredBeers.map(product => {
+          const name = product.name
+          const imageUrl = product.image_url
+          const abv = product.abv
+          const tagline = product.tagline
+
+          const show = (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
+            filterConditions.fromAbv <= abv &&
+            abv <= filterConditions.toAbv)
+
+          return (
+            <li key={product.id} className="product">
+              <ProductCard id={product.id} imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

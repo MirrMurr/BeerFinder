@@ -12,7 +12,7 @@ export const BeerInfo = () => {
     setBeer(beer)
   }, [params.id])
 
-  // TODO Flux storage query
+  // TODO
 
   return (
     <div className="beer-info">
