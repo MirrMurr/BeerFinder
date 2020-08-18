@@ -6,7 +6,7 @@ export const FilterForm = ({ handleSubmit }) => {
   const [fromAbv, setFromAbv] = useState(0)
   const [toAbv, setToAbv] = useState(100)
 
-  // TODO lehet ezt szebben is....
+  // TODO FilterForm: fromAbv < toAbv
   useEffect(() => {
     if (fromAbv > toAbv) alert('no')
   }, [fromAbv, toAbv])

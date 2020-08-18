@@ -9,7 +9,7 @@ import { ListingPage } from './Pages/ListingPage.js'
 import './Stylesheets/styles.css'
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - App state
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO App: Redux
   const [username, setUsername] = useState('')
 
   const history = useHistory()

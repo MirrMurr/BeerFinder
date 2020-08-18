@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import { ProductCard } from './ProductCard'
+import { Pagination } from './Pagination'
 
 // const Beers = [
 //   { id: 1, name: 'Aranyaszok', abv: 3.2, tagline: 'naonjo', image_url: '' },
@@ -14,12 +15,21 @@ export const ProductList = ({ filterConditions }) => {
   const [fetchedData, setFetchedData] = useState([])
   const [loading, setLoading] = useState(false)
   const [filteredBeers, setFilteredBeers] = useState([])
+  const [paginatedBeers, setPaginatedBeers] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage] = useState(9)
 
   // const testConditions = (name, abv) => {
   //   return (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
   //     filterConditions.fromAbv <= abv &&
   //     abv <= filterConditions.toAbv)
   // }
+
+  // TODO Pagination: Redux, Remember page number when coming back
+  const paginate = (pageNumber) => {
+    // window.localStorage.setItem('current-page', currentPage)
+    setCurrentPage(pageNumber)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,29 +58,40 @@ export const ProductList = ({ filterConditions }) => {
     window.localStorage.setItem('filteredBeers', JSON.stringify(filteredBeers))
   }, [filteredBeers])
 
+  useEffect(() => {
+    const indexOfLast = currentPage * itemsPerPage
+    const indexOfFirst = indexOfLast - itemsPerPage
+    setPaginatedBeers(filteredBeers.slice(indexOfFirst, indexOfLast))
+  }, [filteredBeers, currentPage, itemsPerPage])
+
   if (loading) return <div><strong>Loading Beer data...</strong></div>
 
   return (
-    <div className="product-list-container">
-      <ul className="product-list">
-        {filteredBeers.map(product => {
-          const name = product.name
-          const imageUrl = product.image_url
-          const abv = product.abv
-          const tagline = product.tagline
+    <>
+      <div className="product-list-container">
+        <ul className="product-list">
+          {paginatedBeers.map(product => {
+            const show = (product.name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
+              filterConditions.fromAbv <= product.abv &&
+              product.abv <= filterConditions.toAbv)
 
-          const show = (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
-            filterConditions.fromAbv <= abv &&
-            abv <= filterConditions.toAbv)
-
-          return (
-            <li key={product.id} className="product">
-              <ProductCard id={product.id} imgUrl={imageUrl} name={name} abv={abv} tagline={tagline} show={show} />
-            </li>
-          )
-        })}
-      </ul>
-    </div>
+            return (
+              <li key={product.id} className="product">
+                <ProductCard
+                  id={product.id}
+                  imgUrl={product.image_url}
+                  name={product.name}
+                  abv={product.abv}
+                  tagline={product.tagline}
+                  show={show}
+                />
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+      <Pagination paginate={paginate} itemsPerPage={itemsPerPage} totalItems={filteredBeers.length} />
+    </>
   )
 }
 

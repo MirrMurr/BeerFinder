@@ -5,14 +5,13 @@ export const BeerInfo = () => {
   const [beer, setBeer] = useState([])
   const params = useParams()
 
+  // TODO BeerInfo: Redux
   useEffect(() => {
     const data = window.localStorage.getItem('filteredBeers')
     const products = JSON.parse(data)
     const beer = products.find(product => product.id === Number(params.id))
     setBeer(beer)
   }, [params.id])
-
-  // TODO
 
   return (
     <div className="beer-info">

@@ -6,13 +6,11 @@ import { ProductList } from '../Components/Listing/ProductList'
 import { BeerInfo } from '../Components/Listing/BeerInfo'
 
 export const ListingPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true) // TODO Redux
+  const [isLoggedIn, setIsLoggedIn] = useState(true) // TODO: ListingPage Redux
   const [filterConditions, setFilterConditions] = useState({ name: '', fromAbv: 0, toAbv: 100 })
 
   useEffect(() => {
-    return () => {
-      setIsLoggedIn(window.localStorage.getItem('isLoggedIn') === '')
-    }
+    setIsLoggedIn(window.localStorage.getItem('isLoggedIn') === 'true')
   }, [])
 
   const handleSubmitFilter = (filters) => {

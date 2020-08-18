@@ -243,6 +243,21 @@ a.card-link {
   text-decoration: none;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul {
+  display: flex;
+  list-style-type: none;
+}
+
+/* .pagination ul li button {
+  border: none;
+  background-color: #FFFFFF;
+} */
+
 .container {
   display: flex;
   height: 100%;

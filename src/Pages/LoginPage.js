@@ -11,7 +11,7 @@ import { ErrorMessage } from '../Components/ErrorMessage.js'
 import '../Stylesheets/styles.css'
 
 export const LoginPage = ({ LoginHandler }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Redux - Login, username state
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Login: Redux - isLoggedIn, username state
   const [username, setUsername] = useState('')
 
   const [loading, setLoading] = useState(false)
