@@ -5,28 +5,20 @@ import axios from 'axios'
 
 import store from 'Stores/appStore'
 
-import { LoginButton } from '../Components/Login/LoginButton.js'
-import { UsernameInput } from '../Components/Login/UsernameInput.js'
-import { ErrorTypes } from '../Constants/ErrorTypes.js'
-import { ErrorMessage } from '../Components/ErrorMessage.js'
+import { LoginButton } from 'Components/Login/LoginButton.js'
+import { UsernameInput } from 'Components/Login/UsernameInput.js'
+import { ErrorTypes } from 'Constants/ErrorTypes.js'
+import { ErrorMessage } from 'Components/ErrorMessage.js'
 
-import '../Stylesheets/styles.css'
+import 'Stylesheets/styles.css'
 
 export const LoginPage = ({ LoginHandler }) => {
   const { isLoggedIn } = store.getState()
   const [username, setUsername] = useState('')
-
   const [loading, setLoading] = useState(false)
   const [retriedAfterSubmitRejection, setRetried] = useState(true)
   const [isValidated, setIsValidated] = useState(false)
   const [errorType, setErrorType] = useState(ErrorTypes.NONE)
-
-  const validateUsername = async (username) => {
-    setLoading(true)
-    const response = await axios.get('https://yesno.wtf/api')
-    setLoading(false)
-    return response.data.answer === 'yes'
-  }
 
   useEffect(() => {
     setUsername(store.getState().username)
@@ -44,6 +36,17 @@ export const LoginPage = ({ LoginHandler }) => {
     setRetried(true)
   }, [username])
 
+  const handleInputChange = (e) => {
+    setUsername(e.target.value.trim())
+  }
+
+  const validateUsername = async (username) => {
+    setLoading(true)
+    const response = await axios.get('https://yesno.wtf/api')
+    setLoading(false)
+    return response.data.answer === 'yes'
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setRetried(false)
@@ -59,10 +62,6 @@ export const LoginPage = ({ LoginHandler }) => {
           setErrorType(ErrorTypes.Validation)
         }
       })
-  }
-
-  const handleInputChange = (e) => {
-    setUsername(e.target.value.trim())
   }
 
   if (isLoggedIn) { return <Redirect to="/listing" /> }

@@ -7,6 +7,7 @@ import { ProductCard } from './ProductCard'
 import { Pagination } from './Pagination'
 
 const itemsPerPage = 9
+
 export const ProductList = () => {
   const [fetchedData, setFetchedData] = useState([])
   const [loading, setLoading] = useState(false)
