@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import store from 'Stores/appStore'
+
 export const BeerInfo = () => {
   const [beer, setBeer] = useState([])
   const params = useParams()
 
-  // TODO BeerInfo: Redux
   useEffect(() => {
-    const data = window.localStorage.getItem('filteredBeers')
-    const products = JSON.parse(data)
+    const products = store.getState().filteredBeers
     const beer = products.find(product => product.id === Number(params.id))
     setBeer(beer)
   }, [params.id])
@@ -39,8 +39,4 @@ export const BeerInfo = () => {
       </div>
     </div>
   )
-}
-
-BeerInfo.propTypes = {
-  // product (props, propName, componentName) { }
 }

@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 
-export const FilterForm = ({ handleSubmit }) => {
-  const [name, setName] = useState('')
-  const [fromAbv, setFromAbv] = useState(0)
-  const [toAbv, setToAbv] = useState(100)
+import store from 'Stores/appStore'
+
+export const FilterForm = () => {
+  const { filterConditions } = store.getState()
+  const [name, setName] = useState(filterConditions.name)
+  const [fromAbv, setFromAbv] = useState(filterConditions.fromAbv)
+  const [toAbv, setToAbv] = useState(filterConditions.toAbv)
 
   // TODO FilterForm: fromAbv < toAbv
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     if (fromAbv > toAbv) alert('no')
   }, [fromAbv, toAbv])
 
@@ -25,7 +28,14 @@ export const FilterForm = ({ handleSubmit }) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    handleSubmit({ name: name, fromAbv: fromAbv, toAbv: toAbv })
+    store.dispatch({ type: 'RESET_PAGINATION' })
+    store.dispatch({ type: 'SET_FILTER_CONDITIONS', payload: { name: name, fromAbv: fromAbv, toAbv: toAbv } })
+  }
+
+  const clearForm = () => {
+    setName('')
+    setFromAbv(0)
+    setToAbv(100)
   }
 
   return (
@@ -43,12 +53,9 @@ export const FilterForm = ({ handleSubmit }) => {
           <input className="abv-input" type="text" name="abv-to" placeholder="100" onChange={handleToAbvChange} value={toAbv} />
           <span> % </span>
           <button type="submit" className="filter-button">Filter</button>
+          <button type="button" className="clear-button" onClick={clearForm}>✘</button>
         </div>
       </form>
     </div>
   )
-}
-
-FilterForm.propTypes = {
-  handleSubmit: PropTypes.func
 }

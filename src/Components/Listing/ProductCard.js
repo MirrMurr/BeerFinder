@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-export const ProductCard = ({ id, imgUrl, name, abv, tagline, show }) => {
+export const ProductCard = ({ id, imgUrl, name, abv, tagline }) => {
   return (
-    <div className={`product-card ${show ? '' : 'hidden'}`}>
+    <div className="product-card">
       <Link to={`/listing/${id}`} className="card-link">
         <div className="container">
           <div className="details-container">
@@ -26,6 +26,5 @@ ProductCard.propTypes = {
   imgUrl: PropTypes.string,
   name: PropTypes.string,
   abv: PropTypes.number,
-  tagline: PropTypes.string,
-  show: PropTypes.bool
+  tagline: PropTypes.string
 }

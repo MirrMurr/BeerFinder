@@ -124,6 +124,7 @@ header {
 .login-button,
 .filter-button {
   margin-right: 0;
+  margin-left: 10px;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
@@ -137,6 +138,24 @@ header {
 
 .filter-button {
   border-top-left-radius: 10px;
+}
+
+.clear-button {
+  margin-right: 0;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #B3014E;
+  color: #FFFFFF;
+  font-size: medium;
+  font-weight: 900;
+  text-align: center;
+}
+
+.clear-button:hover {
+  background-color: #F4036B;
+  cursor: pointer;
 }
 
 .login-button:hover,
@@ -199,8 +218,6 @@ header {
   margin: 0 auto;
   padding: 0 10em;
   background-color: #FFFFFF;
-
-  /* background-color: #E3616187; */
 }
 
 ul.product-list {
@@ -254,9 +271,16 @@ a.card-link {
 }
 
 .pagination ul li button {
-  /* border: none; */
+  margin: 0 2px;
+  padding: 5px 8px;
+  border: #000000;
   border-radius: 5px;
   background-color: #FFFFFF;
+}
+
+.pagination ul li button:hover {
+  background-color: #E3E3E3;
+  cursor: pointer;
 }
 
 .container {
@@ -356,15 +380,7 @@ a.card-link {
   }
 }
 
-@media screen and (max-width: 570px) {
-  .user-greeting {
-    font-size: x-small;
-  }
-
-  .navigation-panel {
-    width: 50%;
-  }
-
+@media screen and (max-width: 650px) {
   .filter-form {
     display: flexbox;
     flex-direction: column;
@@ -373,6 +389,16 @@ a.card-link {
 
   .abv-input-container {
     margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .user-greeting {
+    font-size: x-small;
+  }
+
+  .navigation-panel {
+    width: 50%;
   }
 
   .info-image-container {
@@ -418,8 +444,8 @@ a.card-link {
     width: 50%;
     font-size: 50%;
   }
-}
 
-.hidden {
-  display: none;
+  .filter-button {
+    margin-top: 10px;
+  }
 }
