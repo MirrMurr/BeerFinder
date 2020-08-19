@@ -1,37 +1,39 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Switch, useHistory, Route } from 'react-router-dom'
 
-import { AppBanner } from './Components/Header/AppBanner.js'
-import { NavigationPanel } from './Components/Header/NavigationPanel.js'
-import { LoginPage } from './Pages/LoginPage.js'
-import { ListingPage } from './Pages/ListingPage.js'
+import store from 'Stores/appStore'
 
-import './Stylesheets/styles.css'
+import { AppBanner } from 'Components/Header/AppBanner.js'
+import { NavigationPanel } from 'Components/Header/NavigationPanel.js'
+import { LoginPage } from 'Pages/LoginPage.js'
+import { ListingPage } from 'Pages/ListingPage.js'
+
+import 'Stylesheets/styles.css'
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO App: Redux
-  const [username, setUsername] = useState('')
-
   const history = useHistory()
 
   useEffect(() => {
     const loggedin = window.localStorage.getItem('isLoggedIn') === 'true'
-    setIsLoggedIn(Boolean(loggedin))
+    const username = window.localStorage.getItem('username')
+    store.dispatch({ type: 'SET_ISLOGGEDIN', isLoggedIn: loggedin })
+    store.dispatch({ type: 'SET_USERNAME', username: username })
   }, [])
 
   const handleLogin = (username) => {
-    setUsername(username)
-    setIsLoggedIn(true)
     window.localStorage.setItem('isLoggedIn', true)
     window.localStorage.setItem('username', username)
+    store.dispatch({ type: 'LOG_IN' })
+    store.dispatch({ type: 'SET_USERNAME', username: username })
+    store.dispatch({ type: 'RESET_PAGINATION' })
     history.push('/listing')
   }
 
   const handleLogout = () => {
-    setUsername('')
-    setIsLoggedIn(false)
     window.localStorage.setItem('isLoggedIn', false)
     window.localStorage.setItem('username', '')
+    store.dispatch({ type: 'LOG_OUT' })
+    store.dispatch({ type: 'SET_USERNAME', username: '' })
     history.push('/')
   }
 
@@ -39,7 +41,7 @@ const App = () => {
     <div>
       <header>
         <AppBanner />
-        <NavigationPanel givenUsername={username} LogoutHandler={handleLogout} isVisible={isLoggedIn} />
+        <NavigationPanel LogoutHandler={handleLogout} />
       </header>
       <Switch>
         <Route path="/listing/" component={ListingPage} />

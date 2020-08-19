@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
+import store from 'Stores/appStore'
+
 import { LoginButton } from '../Components/Login/LoginButton.js'
 import { UsernameInput } from '../Components/Login/UsernameInput.js'
 import { ErrorTypes } from '../Constants/ErrorTypes.js'
@@ -11,7 +13,7 @@ import { ErrorMessage } from '../Components/ErrorMessage.js'
 import '../Stylesheets/styles.css'
 
 export const LoginPage = ({ LoginHandler }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // TODO Login: Redux - isLoggedIn, username state
+  const { isLoggedIn } = store.getState()
   const [username, setUsername] = useState('')
 
   const [loading, setLoading] = useState(false)
@@ -27,8 +29,7 @@ export const LoginPage = ({ LoginHandler }) => {
   }
 
   useEffect(() => {
-    setIsLoggedIn(window.localStorage.getItem('isLoggedIn') === 'true')
-    setUsername(window.localStorage.getItem('username'))
+    setUsername(store.getState().username)
   }, [])
 
   useEffect(() => {

@@ -12,7 +12,7 @@ export const Pagination = ({ paginate, itemsPerPage, totalItems, currentPage }) 
     <nav className="pagination">
       <ul>
         {pageNumbers.map(number => {
-          const style = (number === currentPage) ? { backgroundColor: 'red', color: 'white' } : {}
+          const style = (number === currentPage) ? { backgroundColor: '#9003F4', color: '#FFFFFF' } : {}
           return (
             <li key={number}>
               <button onClick={() => paginate(number)} style={style}>

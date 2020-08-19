@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
+
+import store from 'Stores/appStore'
 
 import { FilterForm } from '../Components/Listing/FilterForm'
 import { ProductList } from '../Components/Listing/ProductList'
 import { BeerInfo } from '../Components/Listing/BeerInfo'
 
 export const ListingPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true) // TODO: ListingPage Redux
-  const [filterConditions, setFilterConditions] = useState({ name: '', fromAbv: 0, toAbv: 100 })
-
-  useEffect(() => {
-    setIsLoggedIn(window.localStorage.getItem('isLoggedIn') === 'true')
-  }, [])
-
-  const handleSubmitFilter = (filters) => {
-    setFilterConditions(filters)
-  }
+  const { isLoggedIn } = store.getState()
 
   if (!isLoggedIn) {
     return <Redirect to="/" />
@@ -27,8 +20,8 @@ export const ListingPage = () => {
       <Route path="/listing">
         <div className="listing-container">
           <div className="listing">
-            <FilterForm handleSubmit={handleSubmitFilter} />
-            <ProductList filterConditions={filterConditions} />
+            <FilterForm />
+            <ProductList />
           </div>
         </div>
       </Route>

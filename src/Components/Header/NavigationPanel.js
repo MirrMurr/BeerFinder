@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import '../../Stylesheets/styles.css'
 
-export const NavigationPanel = ({ givenUsername, LogoutHandler, isVisible }) => {
-  const [username, setUsername] = useState(givenUsername)
+import store from '../../Stores/appStore'
 
-  useEffect(() => {
-    setUsername(window.localStorage.getItem('username'))
-  }, [])
+export const NavigationPanel = ({ LogoutHandler }) => {
+  const { isLoggedIn, username } = store.getState()
 
   const HandleClick = () => {
     LogoutHandler()
   }
 
   return (
-    !isVisible ? null : (
+    !isLoggedIn ? null : (
       <div className="navigation-panel">
-        <p className="user-greeting">Hello, {givenUsername === '' ? username : givenUsername}!</p>
+        <p className="user-greeting">Hello, {username}!</p>
         <button className="logout-button" onClick={HandleClick}>Logout</button>
       </div>
     )
@@ -24,7 +22,5 @@ export const NavigationPanel = ({ givenUsername, LogoutHandler, isVisible }) => 
 }
 
 NavigationPanel.propTypes = {
-  givenUsername: PropTypes.string,
-  LogoutHandler: PropTypes.func,
-  isVisible: PropTypes.bool
+  LogoutHandler: PropTypes.func
 }
