@@ -19,12 +19,6 @@ export const ProductList = ({ filterConditions }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(9)
 
-  // const testConditions = (name, abv) => {
-  //   return (name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
-  //     filterConditions.fromAbv <= abv &&
-  //     abv <= filterConditions.toAbv)
-  // }
-
   // TODO Pagination: Redux, Remember page number when coming back
   const paginate = (pageNumber) => {
     // window.localStorage.setItem('current-page', currentPage)
@@ -71,10 +65,6 @@ export const ProductList = ({ filterConditions }) => {
       <div className="product-list-container">
         <ul className="product-list">
           {paginatedBeers.map(product => {
-            const show = (product.name.toLowerCase().match(filterConditions.name.toLowerCase()) &&
-              filterConditions.fromAbv <= product.abv &&
-              product.abv <= filterConditions.toAbv)
-
             return (
               <li key={product.id} className="product">
                 <ProductCard
@@ -83,7 +73,6 @@ export const ProductList = ({ filterConditions }) => {
                   name={product.name}
                   abv={product.abv}
                   tagline={product.tagline}
-                  show={show}
                 />
               </li>
             )
