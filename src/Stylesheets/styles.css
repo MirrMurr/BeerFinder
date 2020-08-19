@@ -253,10 +253,11 @@ a.card-link {
   list-style-type: none;
 }
 
-/* .pagination ul li button {
-  border: none;
+.pagination ul li button {
+  /* border: none; */
+  border-radius: 5px;
   background-color: #FFFFFF;
-} */
+}
 
 .container {
   display: flex;

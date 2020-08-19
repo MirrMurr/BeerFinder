@@ -90,7 +90,7 @@ export const ProductList = ({ filterConditions }) => {
           })}
         </ul>
       </div>
-      <Pagination paginate={paginate} itemsPerPage={itemsPerPage} totalItems={filteredBeers.length} />
+      <Pagination paginate={paginate} itemsPerPage={itemsPerPage} totalItems={filteredBeers.length} currentPage={currentPage} />
     </>
   )
 }
