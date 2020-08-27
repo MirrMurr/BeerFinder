@@ -1,3 +1,26 @@
-* {
-  margin: 0;
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.pagination ul li button {
+  margin: 0 2px;
+  padding: 5px 8px;
+  border: #000000;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+
+  &:hover {
+    background-color: #E3E3E3;
+    cursor: pointer;
+  }
+
+  &:active:hover {
+    background-color: #969494;
+  }
 }

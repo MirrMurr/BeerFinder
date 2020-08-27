@@ -43,6 +43,7 @@ export const useFilterForm = () => {
 
   const clearForm = () => {
     dispatch(clearFilters())
+    dispatch(resetPagination())
   }
 
   return { name, fromAbv, toAbv, handleNameInputChange, handleFromAbvChange, handleToAbvChange, onSubmit, clearForm }

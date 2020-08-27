@@ -5,16 +5,16 @@ import { Header } from 'components/layout/Header/Header'
 import { LoginForm } from 'components/views/LoginForm/LoginForm'
 import { Listing } from 'components/views/Listing/Listing'
 
-import { useLogin } from 'components/hooks/useLogin'
+import { useLogin } from 'hooks/useLogin'
 
 import 'styles.scss'
 
 const App = () => {
-  const { handleLogin, handleLogout } = useLogin()
+  const { handleLogin } = useLogin()
 
   return (
     <div>
-      <Header handleLogout={handleLogout} />
+      <Header />
       <Switch>
         <Route path="/listing/" component={Listing} />
         <Route path="/">

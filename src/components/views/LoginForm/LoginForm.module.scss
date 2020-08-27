@@ -1,3 +1,68 @@
-* {
-  margin: 0;
+.loginContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  width: 50%;
+  max-width: 375px;
+  margin: auto;
+  padding: 30px;
+  padding-top: 20px;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.2), 0 20px 80px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loginForm {
+  width: 100%;
+}
+
+.usernameInput {
+  box-sizing: border-box;
+  width: inherit;
+  height: 35px;
+  max-height: 45px;
+  border-width: thin;
+  border-color: #E3E3E3;
+  outline: none;
+  background-color: #FFFFFF;
+  font-size: medium;
+  text-decoration: none;
+}
+
+.loginButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1em;
+}
+
+.loginBtn {
+  margin-right: 0;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  background-color: #9003F4;
+  color: #FFFFFF;
+  font-size: medium;
+  font-weight: 900;
+  text-align: center;
+
+  &:hover {
+    background-color: #A122FC;
+    cursor: pointer;
+  }
+
+  &:active:hover {
+    background-color: #6701AF;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .loginBtn {
+    width: 50%;
+    font-size: 50%;
+  }
 }

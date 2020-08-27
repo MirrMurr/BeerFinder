@@ -10,9 +10,7 @@ import { Pagination } from 'components/views/Pagination/Pagination'
 export const Listing = () => {
   const isLoggedIn = useSelector(state => state.login.isLoggedIn)
 
-  if (!isLoggedIn) {
-    return <Redirect to="/" />
-  }
+  if (!isLoggedIn) return <Redirect to="/" />
 
   return (
     <Switch>

@@ -1,3 +1,56 @@
-* {
-  margin: 0;
+.navigationPanel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+  max-width: 325px;
+  margin-right: 20px;
+}
+
+.userGreeting {
+  font-size: 1em;
+  font-weight: 900;
+}
+
+.logoutBtn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(173, 255, 47);
+  color: #000000;
+  font-size: 100%;
+  font-weight: 900;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #F51717;
+    cursor: pointer;
+  }
+
+  &:active:hover {
+    background-color: #960F0F;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .navigationPanel {
+    width: 50%;
+  }
+
+  .userGreeting {
+    font-size: x-small;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navigationPanel {
+    width: 40%;
+    margin: 0 1em;
+  }
+
+  .logoutBtn {
+    width: 50%;
+    font-size: 50%;
+  }
 }

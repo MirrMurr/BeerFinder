@@ -1,3 +1,58 @@
-* {
-  margin: 0;
+.productCard {
+  width: 80%;
+  min-width: 25%;
+  height: 12em;
+  max-height: 15em;
+  margin: 10px auto;
+  padding: 2px 5px;
+  border-radius: 15px;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+  word-break: break-all;
+
+  &:hover {
+    background-color: rgb(173, 255, 47);
+    cursor: pointer;
+  }
+
+  &:active:hover {
+    background-color: rgb(101, 158, 16);
+  }
+}
+
+a.cardLink {
+  color: #000000;
+  text-decoration: none;
+}
+
+.productCardContainer {
+  display: flex;
+  height: 100%;
+  margin: 10px 20px;
+}
+
+.detailsContainer {
+  display: table-cell;
+  width: 75%;
+  padding-top: 1em;
+  vertical-align: center;
+}
+
+.imageContainer {
+  width: 25%;
+}
+
+.beerImage {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: auto;
+  transform: translate(-50%, -55%);
+}
+
+@media screen and (max-width: 850px) {
+  .detailsContainer {
+    padding: 0;
+  }
 }

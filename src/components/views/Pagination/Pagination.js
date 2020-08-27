@@ -1,11 +1,13 @@
 import React from 'react'
 import { usePagination } from './usePagination'
 
+import styles from './Pagination.module.scss'
+
 export const Pagination = () => {
   const { paginate, pageNumbers, currentPage } = usePagination()
 
   return (
-    <nav className="pagination">
+    <nav className={styles.pagination}>
       <ul>
         {pageNumbers.map(number => {
           const style = (number === currentPage) ? { backgroundColor: '#9003F4', color: '#FFFFFF' } : {}

@@ -1,3 +1,50 @@
-* {
-  margin: 0;
+.appBanner {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  max-width: 325px;
+  padding-left: 30px;
+  color: rgb(63, 160, 63);
+  text-align: left;
+}
+
+.companyLogo {
+  width: 50%;
+}
+
+.appNameContainer {
+  display: flex;
+  align-items: center;
+}
+
+.appName {
+  color: rgb(173, 255, 47);
+  font-weight: 900;
+}
+
+@media screen and (max-width: 770px) {
+  .appBanner {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .appBanner {
+    width: 50%;
+  }
+
+  .userGreeting {
+    font-size: x-small;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .appBanner {
+    width: 60%;
+    padding: 0 5px;
+  }
+
+  .appName {
+    font-size: small;
+  }
 }

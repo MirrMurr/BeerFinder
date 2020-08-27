@@ -1,3 +1,124 @@
-* {
-  margin: 0;
+.filterFormContainer {
+  margin: 0 3.33%;
+  padding: 0 10em;
+  padding-top: 1em;
+  background-color: #FFFFFF;
+}
+
+.filterForm {
+  display: flex;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+}
+
+.beerNameInputContainer {
+  margin: 0 10px;
+  padding-top: 0.5em;
+}
+
+.beerNameInput {
+  width: 10em;
+}
+
+.abvInputContainer {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.abvInput {
+  width: 4em;
+}
+
+.beerNameInput,
+.abvInput {
+  height: 1.5em;
+}
+
+.filterBtn {
+  margin-right: 0;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #9003F4;
+  color: #FFFFFF;
+  font-size: medium;
+  font-weight: 900;
+  text-align: center;
+
+  &:hover {
+    background-color: #A122FC;
+    cursor: pointer;
+  }
+
+  &:active:hover {
+    background-color: #6701AF;
+  }
+}
+
+.clearBtn {
+  margin-right: 0;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #BD0152;
+  color: #FFFFFF;
+  font-size: medium;
+  font-weight: 900;
+  text-align: center;
+
+  &:hover {
+    background-color: #F4036B;
+    cursor: pointer;
+  }
+
+  &:active:hover {
+    background-color: #940141;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .filterFormContainer {
+    margin: 0 3.33%;
+    padding: 0;
+    padding-top: 1em;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .filterFormContainer {
+    margin: 0 5%;
+    padding: 0;
+    padding-top: 1em;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .filterForm {
+    display: flexbox;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .abvInputContainer {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .filterFormContainer {
+    margin: 0 10%;
+    padding: 0;
+    padding-top: 1em;
+  }
+
+  .abvInputContainer {
+    display: block;
+  }
+
+  .filterBtn {
+    margin-top: 10px;
+    margin-left: 0;
+  }
 }

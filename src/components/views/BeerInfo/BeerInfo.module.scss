@@ -1,3 +1,46 @@
-* {
-  margin: 0;
+.beerInfo {
+  padding: 2em 5em;
+}
+
+.infoContainer {
+  display: flex;
+}
+
+.infoImageContainer {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  height: 15em;
+  margin: 2em 4em;
+}
+
+.beerDetailImage {
+  width: auto;
+  height: 100%;
+}
+
+.infoTextContainer {
+  background-color: #FFFFFF;
+}
+
+.description {
+  text-justify: auto;
+}
+
+@media screen and (max-width: 850px) {
+  .infoImageContainer {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .infoContainer {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .infoImageContainer {
+    width: 50%;
+  }
 }

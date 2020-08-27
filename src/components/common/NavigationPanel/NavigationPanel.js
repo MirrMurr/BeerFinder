@@ -1,24 +1,23 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import PropTypes from 'prop-types'
+import { useLogin } from 'hooks/useLogin'
 
-export const NavigationPanel = ({ LogoutHandler }) => {
+import styles from './NavigationPanel.module.scss'
+
+export const NavigationPanel = () => {
   const { isLoggedIn, username } = useSelector(state => state.login)
+  const { handleLogout } = useLogin()
 
-  const HandleClick = () => {
-    LogoutHandler()
+  const onClick = () => {
+    handleLogout()
   }
 
   return (
     !isLoggedIn ? null : (
-      <div className="navigation-panel">
-        <p className="user-greeting">Hello, {username}!</p>
-        <button className="logout-button" onClick={HandleClick}>Logout</button>
+      <div className={styles.navigationPanel}>
+        <p className={styles.userGreeting}>Hello, {username}!</p>
+        <button className={styles.logoutBtn} onClick={onClick}>Logout</button>
       </div>
     )
   )
-}
-
-NavigationPanel.propTypes = {
-  LogoutHandler: PropTypes.func
 }

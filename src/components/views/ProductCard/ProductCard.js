@@ -2,18 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
+import styles from './ProductCard.module.scss'
+
 export const ProductCard = ({ id, imgUrl, name, abv, tagline }) => {
   return (
-    <div className="product-card">
-      <Link to={`/listing/${id}`} className="card-link">
-        <div className="container">
-          <div className="details-container">
+    <div className={styles.productCard}>
+      <Link to={`/listing/${id}`} className={styles.cardLink}>
+        <div className={styles.productCardContainer}>
+          <div className={styles.detailsContainer}>
             <p><strong>{name}</strong></p>
             <p>ABV: {abv}%</p>
             <p><i>{tagline}</i></p>
           </div>
-          <div className="image-container">
-            <img className="beer-image" src={imgUrl} alt={name} />
+          <div className={styles.imageContainer}>
+            <img className={styles.beerImage} src={imgUrl} alt={name} />
           </div>
         </div>
       </Link>
