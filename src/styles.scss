@@ -1,0 +1,448 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 4.5em;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.company {
+  width: 50%;
+}
+
+.company path {
+  fill: #FFFFFF;
+}
+
+.app-banner {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  padding-left: 30px;
+  background-color: #000000;
+  color: rgb(63, 160, 63);
+  text-align: left;
+}
+
+.navigation-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+  margin-right: 20px;
+}
+
+.app-banner,
+.navigation-panel {
+  max-width: 325px;
+}
+
+.error {
+  margin-top: 10px;
+  padding: 0.5em;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  color: #F51717;
+  font-size: 90%;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: #000000;
+}
+
+.app-name-container {
+  display: flex;
+  align-items: center;
+}
+
+.app-name {
+  color: rgb(173, 255, 47);
+  font-weight: 900;
+}
+
+.logout-button {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(173, 255, 47);
+  color: #000000;
+  font-size: 100%;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.logout-button:hover {
+  background-color: #F51717;
+  cursor: pointer;
+}
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  width: 50%;
+  max-width: 375px;
+  margin: auto;
+  padding: 30px;
+  padding-top: 20px;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.2), 0 20px 80px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-form {
+  width: 100%;
+}
+
+.usernameInput {
+  box-sizing: border-box;
+  width: inherit;
+  height: 35px;
+  max-height: 45px;
+  border-width: thin;
+  border-color: #E3E3E3;
+  outline: none;
+  background-color: #FFFFFF;
+  font-size: medium;
+  text-decoration: none;
+}
+
+.login-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1em;
+}
+
+.login-button,
+.filter-button {
+  margin-right: 0;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  background-color: #9003F4;
+  color: #FFFFFF;
+  font-size: medium;
+  font-weight: 900;
+  text-align: center;
+}
+
+.filter-button {
+  border-top-left-radius: 10px;
+}
+
+.clear-button {
+  margin-right: 0;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #B3014E;
+  color: #FFFFFF;
+  font-size: medium;
+  font-weight: 900;
+  text-align: center;
+}
+
+.clear-button:hover {
+  background-color: #F4036B;
+  cursor: pointer;
+}
+
+.login-button:hover,
+.filter-button:hover {
+  background-color: #A122FC;
+  cursor: pointer;
+}
+
+.user-greeting {
+  font-size: 1em;
+  font-weight: 900;
+}
+
+.listing {
+  background-color: #FFFFFF;
+}
+
+.filter-form-container {
+  margin: 0 3.33%;
+  padding: 0 10em;
+  padding-top: 1em;
+  background-color: #FFFFFF;
+}
+
+.filter-form {
+  display: flex;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+}
+
+.beer-name-input-container {
+  margin: 0 10px;
+  padding-top: 0.5em;
+}
+
+.abv-input-container {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.beer-name-input {
+  width: 10em;
+}
+
+.abv-input {
+  width: 4em;
+}
+
+.beer-name-input,
+.abv-input {
+  height: 1.5em;
+}
+
+.product-list-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 10em;
+  background-color: #FFFFFF;
+}
+
+ul.product-list {
+  display: block;
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+
+li.product {
+  width: 33.3333%;
+  float: left;
+  background-color: #FFFFFF;
+}
+
+.product-card {
+  width: 80%;
+  min-width: 25%;
+  height: 12em;
+  max-height: 15em;
+  margin: 10px auto;
+
+  /* padding: 10px 20px; */
+  border-radius: 15px;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+  word-break: break-all;
+}
+
+.product-card:hover {
+  background-color: rgb(173, 255, 47);
+  cursor: pointer;
+}
+
+a.card-link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.pagination ul li button {
+  margin: 0 2px;
+  padding: 5px 8px;
+  border: #000000;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
+
+.pagination ul li button:hover {
+  background-color: #E3E3E3;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  margin: 10px 20px;
+}
+
+.details-container {
+  display: table-cell;
+  width: 75%;
+  padding-top: 1em;
+  vertical-align: center;
+}
+
+.image-container {
+  width: 25%;
+}
+
+.beer-image {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: auto;
+  transform: translate(-50%, -55%);
+}
+
+.info-image-container {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  height: 15em;
+  margin: 2em 4em;
+}
+
+.beer-detail-image {
+  width: auto;
+  height: 100%;
+}
+
+.beer-info {
+  padding: 2em 5em;
+}
+
+.description {
+  text-justify: auto;
+}
+
+.info-container {
+  display: flex;
+}
+
+@media screen and (max-width: 1300px) {
+  .product-list-container {
+    padding: 0;
+  }
+
+  .filter-form-container {
+    margin: 0 3.33%;
+    padding: 0;
+    padding-top: 1em;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .product-list-container {
+    padding: 0;
+  }
+
+  .details-container {
+    padding: 0;
+  }
+
+  li.product {
+    width: 50%;
+  }
+
+  .filter-form-container {
+    margin: 0 5%;
+    padding: 0;
+    padding-top: 1em;
+  }
+
+  .info-image-container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .info-container {
+    display: block;
+  }
+
+  .app-banner {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .filter-form {
+    display: flexbox;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .abv-input-container {
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .user-greeting {
+    font-size: x-small;
+  }
+
+  .navigation-panel {
+    width: 50%;
+  }
+
+  .info-image-container {
+    width: 50%;
+  }
+
+  .app-banner {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .product-list-container {
+    padding: 0;
+  }
+
+  li.product {
+    width: 100%;
+  }
+
+  .filter-form-container {
+    margin: 0 10%;
+    padding: 0;
+    padding-top: 1em;
+  }
+
+  .app-banner {
+    width: 60%;
+    padding: 0 5px;
+  }
+
+  .navigation-panel {
+    width: 40%;
+    margin: 0 1em;
+  }
+
+  .app-name {
+    font-size: small;
+  }
+
+  .logout-button,
+  .login-button {
+    width: 50%;
+    font-size: 50%;
+  }
+
+  .filter-button {
+    margin-top: 10px;
+  }
+}

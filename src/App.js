@@ -1,52 +1,24 @@
-import React, { useEffect } from 'react'
-import { Switch, useHistory, Route } from 'react-router-dom'
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import store from 'Stores/appStore'
+import { Header } from 'components/layout/Header/Header'
+import { LoginForm } from 'components/views/LoginForm/LoginForm'
+import { Listing } from 'components/views/Listing/Listing'
 
-import { AppBanner } from 'Components/Header/AppBanner.js'
-import { NavigationPanel } from 'Components/Header/NavigationPanel.js'
-import { LoginPage } from 'Pages/LoginPage.js'
-import { ListingPage } from 'Pages/ListingPage.js'
+import { useLogin } from 'components/hooks/useLogin'
 
-import 'Stylesheets/styles.css'
+import 'styles.scss'
 
 const App = () => {
-  const history = useHistory()
-
-  useEffect(() => {
-    const loggedin = window.localStorage.getItem('isLoggedIn') === 'true'
-    const username = window.localStorage.getItem('username')
-    store.dispatch({ type: 'SET_ISLOGGEDIN', isLoggedIn: loggedin })
-    store.dispatch({ type: 'SET_USERNAME', username: username })
-  }, [])
-
-  const handleLogin = (username) => {
-    window.localStorage.setItem('isLoggedIn', true)
-    window.localStorage.setItem('username', username)
-    store.dispatch({ type: 'LOG_IN' })
-    store.dispatch({ type: 'SET_USERNAME', username: username })
-    store.dispatch({ type: 'RESET_PAGINATION' })
-    history.push('/listing')
-  }
-
-  const handleLogout = () => {
-    window.localStorage.setItem('isLoggedIn', false)
-    window.localStorage.setItem('username', '')
-    store.dispatch({ type: 'LOG_OUT' })
-    store.dispatch({ type: 'SET_USERNAME', username: '' })
-    history.push('/')
-  }
+  const { handleLogin, handleLogout } = useLogin()
 
   return (
     <div>
-      <header>
-        <AppBanner />
-        <NavigationPanel LogoutHandler={handleLogout} />
-      </header>
+      <Header handleLogout={handleLogout} />
       <Switch>
-        <Route path="/listing/" component={ListingPage} />
+        <Route path="/listing/" component={Listing} />
         <Route path="/">
-          <LoginPage LoginHandler={handleLogin} />
+          <LoginForm LoginHandler={handleLogin} />
         </Route>
       </Switch>
     </div>

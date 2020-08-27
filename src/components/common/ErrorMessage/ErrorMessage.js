@@ -1,0 +1,14 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import { ErrorTypes } from 'constants/ErrorTypes'
+import { ErrorMessages } from 'constants/ErrorMessages'
+
+export const ErrorMessage = ({ show, type }) => {
+  if (ErrorTypes.NONE === type) return null
+  return (show ? <div className={`error ${type}`}>{ErrorMessages[type]}</div> : null)
+}
+
+ErrorMessage.propTypes = {
+  show: PropTypes.bool,
+  type (props, propName, componentName) { }
+}
