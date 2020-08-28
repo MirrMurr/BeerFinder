@@ -8,7 +8,6 @@ const initialState = {
   username: '',
   isValid: false,
   isLoggedIn: false,
-  error: null,
   errorType: ErrorTypes.None
 }
 
@@ -30,12 +29,11 @@ const loginSlice = createSlice({
     login: (state, action) => {
       state.loading = 'idle'
       state.username = action.payload.username
+      state.isValid = true
       state.isLoggedIn = true
-      state.error = null
       state.errorType = ErrorTypes.None
     },
     error: (state, action) => {
-      state.error = action.payload.error
       state.errorType = action.payload.errorType
     },
     logout: _ => initialState
@@ -48,9 +46,8 @@ export default loginSlice.reducer
 export const validateUsername = (username) => async dispatch => {
   const errorType = testUsername(username)
   let isValid = errorType === ErrorTypes.None
-  if (!isValid) {
-    return dispatch(invalid(errorType))
-  }
+  if (!isValid) return dispatch(invalid(errorType))
+
   try {
     dispatch(loading())
     const approved = await checkUsername(username)
@@ -58,7 +55,6 @@ export const validateUsername = (username) => async dispatch => {
     isValid = isValid && approved
     dispatch(success(isValid))
   } catch (err) {
-    dispatch(error({ error: err.toString(), errorType: ErrorTypes.Network }))
+    dispatch(error({ errorType: ErrorTypes.Network }))
   }
-  return isValid
 }
