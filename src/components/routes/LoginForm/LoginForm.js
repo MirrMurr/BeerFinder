@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { LoginButton } from 'components/views/LoginForm/LoginButton'
-import { UsernameInput } from 'components/views/LoginForm/UsernameInput'
+import { LoginButton } from './LoginButton'
+import { UsernameInput } from './UsernameInput'
 import { ErrorMessage } from 'components/common/ErrorMessage/ErrorMessage'
 import { useLoginForm } from './useLoginForm'
 

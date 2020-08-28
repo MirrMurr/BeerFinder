@@ -6,23 +6,30 @@ import { login, logout } from 'store/login'
 import { resetPagination } from 'store/pagination'
 import { clearFilters } from 'store/filterConditions'
 
+import { saveState, loadState } from 'services/persistence/LocalStorageService'
+
 export const useLogin = (params) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const loggedin = window.localStorage.getItem('isLoggedIn') === 'true'
-    const username = window.localStorage.getItem('username')
-    if (loggedin) {
-      dispatch(login({ username }))
-    } else {
-      dispatch(logout())
+    const state = loadState()
+    if (state) {
+      const { isLoggedIn, username } = state
+      if (isLoggedIn) {
+        dispatch(login({ username }))
+      } else {
+        dispatch(logout())
+      }
     }
   }, [dispatch])
 
   const handleLogin = (username) => {
-    window.localStorage.setItem('isLoggedIn', true)
-    window.localStorage.setItem('username', username)
+    saveState({
+      isLoggedIn: true,
+      username
+    })
+
     dispatch(login({ username }))
     dispatch(resetPagination())
     dispatch(clearFilters())
@@ -30,8 +37,11 @@ export const useLogin = (params) => {
   }
 
   const handleLogout = () => {
-    window.localStorage.setItem('isLoggedIn', false)
-    window.localStorage.setItem('username', '')
+    saveState({
+      isLoggedIn: false,
+      username: ''
+    })
+
     dispatch(logout())
     history.push('/')
   }
