@@ -1,31 +1,24 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import axios from 'axios'
 
 import { setTotalItems } from 'store/pagination'
 import { setFilteredBeers } from 'store/filteredBeers'
+import { fetchData } from 'store/beers'
 
 export const useProductList = () => {
   const [paginatedBeers, setPaginatedBeers] = useState([])
 
-  const [fetchedData, setFetchedData] = useState([])
-  const [loading, setLoading] = useState(false)
-
-  const dispatch = useDispatch()
-  const filteredBeers = useSelector(state => state.filteredBeers.beers)
+  const fetchedData = useSelector(state => state.beers.list)
+  const loading = useSelector(state => state.beers.loading) === 'pending'
   const currentPage = useSelector(state => state.pagination.currentPage)
   const itemsPerPage = useSelector(state => state.pagination.itemsPerPage)
   const filterConditions = useSelector(state => state.filterConditions)
+  const filteredBeers = useSelector(state => state.filteredBeers.beers)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      const response = await axios.get('https://api.punkapi.com/v2/beers')
-      setLoading(false)
-      setFetchedData(response.data) // TODO Punk api: valahogy ezt store-ba ?
-    }
-    fetchData()
-  }, [])
+    if (fetchedData.length === 0) dispatch(fetchData())
+  }, [fetchedData, dispatch])
 
   useEffect(() => {
     const filterBeers = () => {

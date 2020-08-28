@@ -1,59 +1,35 @@
-import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import axios from 'axios'
-import { ErrorTypes } from 'constants/ErrorTypes.js'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+// import { ErrorTypes } from 'constants/ErrorTypes.js'
 import { useLogin } from 'hooks/useLogin'
+
+import { validateUsername } from 'store/login'
+
+import { ErrorTypes } from 'constants/ErrorTypes'
 
 export const useLoginForm = () => {
   const { handleLogin } = useLogin()
+
   const isLoggedIn = useSelector(state => state.login.isLoggedIn)
+  const loading = useSelector(state => state.login.loading) === 'pending'
+  const errorType = useSelector(state => state.login.errorType)
+
   const [username, setUsername] = useState('')
-
   const [retriedAfterSubmitRejection, setRetried] = useState(true)
-  const [isValidated, setIsValidated] = useState(false)
+  const error = (errorType !== ErrorTypes.None) && !retriedAfterSubmitRejection
 
-  const [loading, setLoading] = useState(false) // TODO yesno.wtf api: loading, error ??
-  const [errorType, setErrorType] = useState(ErrorTypes.NONE)
-  const error = !retriedAfterSubmitRejection && !isValidated
-
-  useEffect(() => {
-    if (username === null) return
-    if (username === '') {
-      setErrorType(ErrorTypes.EmptyUsername)
-    } else if (username.length > 16) {
-      setErrorType(ErrorTypes.LongUsername)
-    } else {
-      setErrorType(ErrorTypes.NONE)
-    }
-    setRetried(true)
-  }, [username])
+  const dispatch = useDispatch()
 
   const handleInputChange = (e) => {
+    setRetried(true)
     setUsername(e.target.value.trim())
-  }
-
-  const validateUsername = async (username) => {
-    setLoading(true)
-    const response = await axios.get('https://yesno.wtf/api')
-    setLoading(false)
-    return response.data.answer === 'yes'
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
     setRetried(false)
-    if ([ErrorTypes.EmptyUsername, ErrorTypes.LongUsername].includes(errorType)) {
-      return
-    }
-    validateUsername(username)
-      .then(isValid => {
-        setIsValidated(isValid)
-        if (isValid) {
-          handleLogin(username)
-        } else {
-          setErrorType(ErrorTypes.Validation)
-        }
-      })
+    dispatch(validateUsername(username))
+    handleLogin(username)
   }
 
   return { isLoggedIn, loading, onSubmit, handleInputChange, error, errorType }

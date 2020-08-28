@@ -7,6 +7,7 @@ const persistedState = loadState()
 const store = configureStore({
   reducer,
   persistedState
+  // middleware: applyMiddleware(thunk)
 })
 
 export default store

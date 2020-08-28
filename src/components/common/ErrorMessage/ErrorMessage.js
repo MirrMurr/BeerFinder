@@ -6,7 +6,7 @@ import { ErrorMessages } from 'constants/ErrorMessages'
 import styles from './ErrorMessage.module.scss'
 
 export const ErrorMessage = ({ show, type }) => {
-  if (ErrorTypes.NONE === type) return null
+  if (ErrorTypes.None === type) return null
   return (show ? <div className={`${styles.error} ${type}`}>{ErrorMessages[type]}</div> : null)
 }
 
