@@ -8,31 +8,34 @@ import { ErrorTypes } from 'constants/ErrorTypes'
 export const useLoginForm = () => {
   const { handleLogin } = useLogin()
 
+  const username = useSelector(state => state.login.username)
   const isLoggedIn = useSelector(state => state.login.isLoggedIn)
   const loading = useSelector(state => state.login.loading) === 'pending'
   const errorType = useSelector(state => state.login.errorType)
   const isValid = useSelector(state => state.login.isValid)
 
-  const [username, setUsername] = useState('')
+  const [usernameInputValue, setUsernameValue] = useState(username)
   const [retriedAfterSubmitRejection, setRetried] = useState(true)
   const error = (errorType !== ErrorTypes.None) && !retriedAfterSubmitRejection
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    handleLogin(username)
-  }, [handleLogin, isValid, username])
-
   const handleInputChange = (e) => {
     setRetried(true)
-    setUsername(e.target.value.trim())
+    setUsernameValue(e.target.value.trim())
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
     setRetried(false)
-    dispatch(validateUsername(username))
+    dispatch(validateUsername(usernameInputValue))
   }
+
+  useEffect(() => {
+    if (isValid) {
+      handleLogin(usernameInputValue)
+    }
+  }, [handleLogin, isValid, usernameInputValue])
 
   return { isLoggedIn, loading, onSubmit, handleInputChange, error, errorType }
 }

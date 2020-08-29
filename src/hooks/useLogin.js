@@ -11,7 +11,6 @@ import { saveState, loadState } from 'services/persistence/LocalStorageService'
 export const useLogin = (params) => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const isValid = useSelector(state => state.login.isValid)
 
   useEffect(() => {
     const state = loadState()
@@ -26,7 +25,6 @@ export const useLogin = (params) => {
   }, [dispatch])
 
   const handleLogin = (username) => {
-    if (!isValid) return
     saveState({
       isLoggedIn: true,
       username
