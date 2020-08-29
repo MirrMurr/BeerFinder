@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { login, logout } from 'store/login'
+import { login, logout, validity } from 'store/login'
 import { resetPagination } from 'store/pagination'
 import { clearFilters } from 'store/filterConditions'
 
-import { saveState, loadState } from 'services/persistence/LocalStorageService'
+import { saveState, loadState } from 'services/persistence/sessionStorageService'
 
 export const useLogin = (params) => {
   const history = useHistory()
@@ -15,9 +15,10 @@ export const useLogin = (params) => {
   useEffect(() => {
     const state = loadState()
     if (state) {
-      const { isLoggedIn, username } = state
-      if (isLoggedIn) {
+      const { isLoggedIn, username, isValid } = state
+      if (isLoggedIn && isValid) {
         dispatch(login({ username }))
+        dispatch(validity(isValid))
       } else {
         dispatch(logout())
       }
@@ -26,8 +27,9 @@ export const useLogin = (params) => {
 
   const handleLogin = (username) => {
     saveState({
+      username,
       isLoggedIn: true,
-      username
+      isValid: true
     })
 
     dispatch(login({ username }))
@@ -38,8 +40,9 @@ export const useLogin = (params) => {
 
   const handleLogout = () => {
     saveState({
+      username: '',
       isLoggedIn: false,
-      username: ''
+      isValid: false
     })
 
     dispatch(logout())

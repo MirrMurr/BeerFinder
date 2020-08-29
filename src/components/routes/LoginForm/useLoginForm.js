@@ -32,10 +32,10 @@ export const useLoginForm = () => {
   }
 
   useEffect(() => {
-    if (isValid) {
+    if (isValid && !isLoggedIn) {
       handleLogin(usernameInputValue)
     }
-  }, [handleLogin, isValid, usernameInputValue])
+  }, [handleLogin, isValid, usernameInputValue, isLoggedIn])
 
-  return { isLoggedIn, loading, onSubmit, handleInputChange, error, errorType }
+  return { isLoggedIn, isValid, loading, onSubmit, handleInputChange, error, errorType }
 }

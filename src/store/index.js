@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import reducer from 'reducers/index'
-import { loadState } from 'services/persistence/LocalStorageService'
+import { loadState } from 'services/persistence/sessionStorageService'
 
 const persistedState = loadState()
 

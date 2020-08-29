@@ -1,6 +1,6 @@
 export const loadState = () => {
   try {
-    const state = window.localStorage.getItem('state')
+    const state = window.sessionStorage.getItem('state')
     if (state === null) {
       return undefined
     }
@@ -13,7 +13,7 @@ export const loadState = () => {
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state)
-    window.localStorage.setItem('state', serializedState)
+    window.sessionStorage.setItem('state', serializedState)
   } catch (err) {
     // SKIP
   }
