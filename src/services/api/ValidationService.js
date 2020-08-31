@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ErrorTypes } from 'constants/ErrorTypes'
 
-export const checkUsername = (username) => {
+export const checkUsername = async (username) => {
   return axios.get('https://yesno.wtf/api').then(response => response.data.answer === 'yes')
 }
 

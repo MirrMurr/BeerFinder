@@ -17,7 +17,6 @@ const paginationSlice = createSlice({
       return { ...state, totalItems: action.payload }
     },
     setCurrentPage: (state, action) => {
-      // TODO error check ?
       return { ...state, currentPage: action.payload }
     },
     resetPagination: (state, _) => {

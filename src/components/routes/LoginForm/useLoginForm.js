@@ -1,33 +1,30 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useForm } from 'react-hook-form'
 
 import { useLogin } from 'hooks/useLogin'
-import { validateUsername } from 'store/login'
+import { validateUsername, error } from 'store/login'
 import { ErrorTypes } from 'constants/ErrorTypes'
 
 export const useLoginForm = () => {
   const { handleLogin } = useLogin()
+  const { register, handleSubmit, errors } = useForm()
+  const dispatch = useDispatch()
 
   const username = useSelector(state => state.login.username)
   const isLoggedIn = useSelector(state => state.login.isLoggedIn)
   const loading = useSelector(state => state.login.loading) === 'pending'
-  const errorType = useSelector(state => state.login.errorType)
   const isValid = useSelector(state => state.login.isValid)
+  const errorType = useSelector(state => state.login.error)
 
   const [usernameInputValue, setUsernameValue] = useState(username)
-  const [retriedAfterSubmitRejection, setRetried] = useState(true)
-  const error = (errorType !== ErrorTypes.None) && !retriedAfterSubmitRejection
-
-  const dispatch = useDispatch()
 
   const handleInputChange = (e) => {
-    setRetried(true)
+    dispatch(error(ErrorTypes.None))
     setUsernameValue(e.target.value.trim())
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-    setRetried(false)
+  const onSubmit = () => {
     dispatch(validateUsername(usernameInputValue))
   }
 
@@ -35,7 +32,7 @@ export const useLoginForm = () => {
     if (isValid && !isLoggedIn) {
       handleLogin(usernameInputValue)
     }
-  }, [handleLogin, isValid, usernameInputValue, isLoggedIn])
+  }, [isValid, isLoggedIn, handleLogin, usernameInputValue])
 
-  return { isLoggedIn, isValid, loading, onSubmit, handleInputChange, error, errorType }
+  return { usernameInputValue, isLoggedIn, loading, onSubmit, handleInputChange, register, handleSubmit, errors, errorType }
 }
