@@ -8,7 +8,7 @@ import { ErrorTypes } from 'constants/ErrorTypes'
 
 export const useLoginForm = () => {
   const { handleLogin } = useLogin()
-  const { register, handleSubmit, errors } = useForm()
+  const { register, handleSubmit, errors } = useForm({ mode: 'onSubmit', reValidateMode: 'onChange' })
   const dispatch = useDispatch()
 
   const username = useSelector(state => state.login.username)
