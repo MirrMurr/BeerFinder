@@ -5,7 +5,7 @@ export const requireLogin = (to, from, next) => {
     if (store.getState().login.isValid) {
       next()
     }
-    next.redirect('/')
+    next.redirect('/login')
   } else {
     next()
   }

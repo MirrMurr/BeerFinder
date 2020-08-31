@@ -9,8 +9,8 @@ import { Pagination } from 'components/views/Pagination/Pagination'
 export const Listing = () => {
   return (
     <Switch>
-      <Route path="/listing/:id" component={BeerInfo} exact />
-      <Route path="/listing">
+      <Route path="/listing/:id" component={BeerInfo} />
+      <Route path="/listing/">
         <div className="listing-container">
           <div className="listing">
             <FilterForm />

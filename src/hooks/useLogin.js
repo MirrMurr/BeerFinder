@@ -46,7 +46,7 @@ export const useLogin = (params) => {
     })
 
     dispatch(logout())
-    history.push('/')
+    history.push('/login')
   }
 
   return { handleLogin, handleLogout }
