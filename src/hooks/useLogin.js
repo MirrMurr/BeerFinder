@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { login, logout, validity } from 'store/login'
+import { login, logout } from 'store/login'
 import { resetPagination } from 'store/pagination'
 import { clearFilters } from 'store/filterConditions'
 
@@ -15,10 +15,9 @@ export const useLogin = (params) => {
   useEffect(() => {
     const state = loadState()
     if (state) {
-      const { isLoggedIn, username, isValid } = state
-      if (isLoggedIn && isValid) {
+      const { isLoggedIn, username } = state
+      if (isLoggedIn) {
         dispatch(login({ username }))
-        dispatch(validity(isValid))
       } else {
         dispatch(logout())
       }
@@ -28,8 +27,7 @@ export const useLogin = (params) => {
   const handleLogin = (username) => {
     saveState({
       username,
-      isLoggedIn: true,
-      isValid: true
+      isLoggedIn: true
     })
 
     dispatch(login({ username }))
@@ -41,8 +39,7 @@ export const useLogin = (params) => {
   const handleLogout = () => {
     saveState({
       username: '',
-      isLoggedIn: false,
-      isValid: false
+      isLoggedIn: false
     })
 
     dispatch(logout())

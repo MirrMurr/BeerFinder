@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { testUsername, checkUsername } from 'services/api/ValidationService'
+import { checkUsername } from 'services/api/ValidationService'
 
 import { ErrorTypes } from 'constants/ErrorTypes'
 
@@ -8,7 +8,7 @@ const initialState = {
   username: '',
   isValid: false,
   isLoggedIn: false,
-  errorType: ErrorTypes.None
+  error: ErrorTypes.None
 }
 
 const loginSlice = createSlice({
@@ -17,10 +17,6 @@ const loginSlice = createSlice({
   reducers: {
     loading: (state, action) => {
       state.loading = 'pending'
-    },
-    invalid: (state, action) => {
-      state.isValid = false
-      state.errorType = action.payload
     },
     success: (state, action) => {
       state.loading = 'idle'
@@ -33,28 +29,24 @@ const loginSlice = createSlice({
       state.isLoggedIn = true
     },
     error: (state, action) => {
-      state.errorType = action.payload.errorType
+      state.isValid = false
+      state.error = action.payload
     },
     logout: _ => initialState
   }
 })
 
-export const { loading, invalid, success, validity, login, error, logout } = loginSlice.actions
+export const { loading, success, validity, error, login, logout } = loginSlice.actions
 export default loginSlice.reducer
 
 export const validateUsername = (username) => async dispatch => {
-  const errorType = testUsername(username)
-  let isValid = errorType === ErrorTypes.None
-  if (!isValid) return dispatch(invalid(errorType))
-
   try {
     dispatch(loading())
     const approved = await checkUsername(username)
-    if (!approved) dispatch(invalid(ErrorTypes.Validation))
-    isValid = isValid && approved
+    if (!approved) dispatch(error(ErrorTypes.Validation))
+    dispatch(validity(approved))
     dispatch(success())
-    dispatch(validity(isValid))
   } catch (err) {
-    dispatch(error({ errorType: ErrorTypes.Network }))
+    dispatch(error(ErrorTypes.Network))
   }
 }
