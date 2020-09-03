@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import { GuardProvider, GuardedRoute } from 'react-router-guards'
 
 import { Header } from 'components/layout/Header/Header'
-import { LoginForm } from 'components/routes/LoginForm/LoginForm'
+
+import { LoginForm } from 'components/views/auth/LoginForm'
+
 import { Listing } from 'components/routes/Listing/Listing'
-import { requireLogin } from 'services/utils/loginService'
 import { NotFound } from 'components/routes/NotFound/NotFound'
+
+import { requireLogin } from 'services/utils/loginService'
 
 import 'styles.scss'
 
